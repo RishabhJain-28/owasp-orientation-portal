@@ -23,8 +23,8 @@ const NavbarComponent = () => {
             <Nav.Link href="/dashboard/contactus">CONTACT US</Nav.Link> */}
             <Nav.Link
               className="responsive-view"
-              // href={`${process.env.REACT_APP_BASE_URL}/api/auth/login`}
-              href="http://localhost:5000/api/auth/login"
+              href={`${process.env.REACT_APP_BASE_URL}/api/auth/login`}
+              // href="http://localhost:5000/api/auth/login"
             >
               SIGNIN
             </Nav.Link>
@@ -36,8 +36,8 @@ const NavbarComponent = () => {
             //   e.preventDefault();
             //   // * Signin()
             // }}
-            // href={`${process.env.REACT_APP_BASE_URL}/api/auth/login`}
-            href="http://localhost:5000/api/auth/login"
+            href={`${process.env.REACT_APP_BASE_URL}/api/auth/login`}
+            // href="http://localhost:5000/api/auth/login"
             className="btn active signin"
             role="button"
             aria-pressed="true"

@@ -13,8 +13,8 @@ const RegistrationForm = ({ buttonText, ...rest }) => {
   return (
     <Form
       {...rest}
-      // action={`${process.env.REACT_APP_BASE_URL}/api/auth/register`}
-      action={`http://localhost:5000/api/auth/register`}
+      action={`${process.env.REACT_APP_BASE_URL}/api/auth/register`}
+      // action={`http://localhost:5000/api/auth/register`}
       method="POST"
     >
       <Input
