@@ -1,12 +1,7 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Dashboard from "./Pages/Dashboard";
 import CompleteRegistration from "./Pages/CompleteRegistration";
 // import ContactUs from "./Pages/ContactUs";
