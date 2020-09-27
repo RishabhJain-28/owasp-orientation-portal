@@ -12,6 +12,7 @@ import CompleteRegistration from "./Pages/CompleteRegistration";
 // import ContactUs from "./Pages/ContactUs";
 import FunQuiz from "./Pages/FunQuiz";
 import CodingQuiz from "./Pages/CodingQuiz";
+import ErrorPage from "./Pages/ErrorPage";
 
 function App() {
   useEffect(() => {
@@ -21,12 +22,14 @@ function App() {
     <React.Fragment>
       <Router>
         <Switch>
+          <Route path="/error" component={ErrorPage} />
           <Route path="/dashboard" component={Dashboard} />
           {/* <Route exact path="/contactus" component={ContactUs} /> */}
           <Route exact path="/funquiz" component={FunQuiz} />
           <Route exact path="/codingquiz" component={CodingQuiz} />
           <Route exact path="/" component={CompleteRegistration} />
-          <Redirect to="/" />
+
+          {/* <Redirect to="/" /> */}
         </Switch>
       </Router>
     </React.Fragment>

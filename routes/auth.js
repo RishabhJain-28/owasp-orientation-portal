@@ -18,7 +18,11 @@ router.get(
     req.session.route = "login";
     return next();
   },
-  passport.authenticate("google", { scope: ["profile", "email"] })
+
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+    failureRedrect: `${process.env.CLIENT_URL}/`,
+  })
 );
 
 router.post(
@@ -34,22 +38,32 @@ router.post(
 
 // * Callback uri for google login
 // * Done
-router.get(
-  "/login/callback",
-  passport.authenticate("google", {
-    // failureFlash: "YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
-    // failureRedrect: `${process.env.CLIENT_URL}`,
-  }),
-  (req, res) => {
-    res.redirect(`${process.env.CLIENT_URL}/dashboard`);
-  }
-);
+router.get("/login/callback", (req, res, next) => {
+  passport.authenticate(
+    "google",
+    {
+      scope: ["profile", "email"],
+    },
+    function (err, user, info) {
+      // console.log(err, user, info);
+      if (!user)
+        return res.redirect(`${process.env.CLIENT_URL}/error?msg=${err}`);
+      req.logIn(user, function (err) {
+        if (err) {
+          return next(err);
+        }
+
+        return res.redirect(`${process.env.CLIENT_URL}/dashboard`);
+      });
+    }
+  )(req, res, next);
+});
 
 // * Logout
 // * Done
-router.get("/logout", isAuthenticated, (req, res) => {
+router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect(process.env.CLIENT_URL);
+  res.redirect("/");
 });
 
 // * End of API Endpoints -->
