@@ -12,8 +12,8 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      // callbackURL: "/api/auth/login/callback",
-      callbackURL: "http://localhost:3000/api/auth/login/callback",
+      callbackURL: "/api/auth/login/callback",
+      // callbackURL: "http://localhost:3000/api/auth/login/callback",
       passReqToCallback: true,
     },
     async (req, accessToken, refreshToken, profile, done) => {
