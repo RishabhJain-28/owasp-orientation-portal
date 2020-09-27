@@ -219,7 +219,7 @@ ul.timer-li {
 /* --------right part form------- */
 
 .register-form {
-  margin: 2rem 2.5rem;
+  margin: 2rem 1.5rem;
   border-bottom-right-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
 }
@@ -618,8 +618,8 @@ ul.timer-li-phone {
   .contact-phone {
     margin-bottom: 4rem;
     align-items: center;
-    margin-right: 2.5rem;
-    margin-left: 2.5rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
 
     text-align: center;
   }

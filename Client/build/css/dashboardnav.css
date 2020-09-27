@@ -68,10 +68,15 @@ h2.username {
   color: rgb(198, 198, 198);
 }
 
-.active span,
-.fa-dashboard {
+.active-red {
   color: #eb5757 !important;
 }
+.active-blue {
+  color: #3bc0d2 !important;
+}
+/* .active span {
+  color: #eb5757 !important;
+} */
 
 /* ----------hover navlink--------- */
 

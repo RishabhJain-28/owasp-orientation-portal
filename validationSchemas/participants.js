@@ -7,7 +7,7 @@ exports.register = (body) => {
       .trim()
       .pattern(/[6-9]{1}[0-9]{9}/)
       .required(),
-    branch: Joi.string().min(5).max(250).trim(), //! Make required()
+    branch: Joi.string().min(3).max(250).trim(), //! Make required()
     //? cheeck for validity of branches
   });
 

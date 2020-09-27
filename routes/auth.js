@@ -41,7 +41,7 @@ router.get(
     // failureRedrect: `${process.env.CLIENT_URL}`,
   }),
   (req, res) => {
-    res.redirect(`/dashboard`);
+    res.redirect(`${process.env.CLIENT_URL}/dashboard`);
   }
 );
 

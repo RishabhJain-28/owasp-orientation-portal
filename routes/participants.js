@@ -14,12 +14,12 @@ const router = express.Router();
 
 // * Registeration participant with google
 // * Done
-router.post("/register", (req, res) => {
-  const { value, error } = participantValidators.register(req.body);
-  if (error) return res.redirect("/error");
-  global.userData = value;
-  res.redirect("/api/auth/login");
-});
+// router.post("/register", (req, res) => {
+//   const { value, error } = participantValidators.register(req.body);
+//   if (error) return res.redirect("/error");
+//   global.userData = value;
+//   res.redirect("/api/auth/login");
+// });
 
 // * Get profile of a participant
 // * Done

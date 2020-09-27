@@ -1,11 +1,10 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 const NavbarComponent = () => {
-  //! fix logo a tag
   return (
     <>
       <Navbar variant="dark" className="navCustom  fixed-top" expand="lg">
-        <Navbar.Brand href="#home" style={{ marginLeft: "1 rem" }}>
+        <Navbar.Brand href="/" style={{ marginLeft: "1 rem" }}>
           <img className="logo" alt="LOGO" src="IMAGES/owasp_logo-13.png" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -32,10 +31,6 @@ const NavbarComponent = () => {
         </Navbar.Collapse>
         <div className="view zoom signin-desktop-view">
           <a
-            // onClick={(e) => {
-            //   e.preventDefault();
-            //   // * Signin()
-            // }}
             href={`${process.env.REACT_APP_BASE_URL}/api/auth/login`}
             // href="http://localhost:5000/api/auth/login"
             className="btn active signin"

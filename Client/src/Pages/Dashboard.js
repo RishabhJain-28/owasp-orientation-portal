@@ -3,10 +3,11 @@ import axios from "../util/axios";
 
 import DashboardNav from "../Components/DashboardNav";
 import DashboardContent from "../Components/DashboardContent";
-import DashboardProfile from "../Components/DashboardProfile";
+// import DashboardProfile from "../Components/DashboardProfile";
 import DashboardAnnouncement from "../Components/DashboardAnnouncement";
+import Leaderboard from "../Components/DashboardLeaderboard";
 import DashboardAboutus from "../Components/DashboardAboutus";
-// import ContactUs from "./ContactUs";
+
 import { Helmet } from "react-helmet";
 
 import {
@@ -23,7 +24,7 @@ const Dashboard = ({ location }) => {
     async function getProfile() {
       try {
         const res = await axios.get("/participants/profile");
-        console.log(res);
+
         setUser(res.data);
       } catch (error) {
         setRedirect(true);
@@ -32,7 +33,7 @@ const Dashboard = ({ location }) => {
 
     getProfile();
   }, []);
-  console.log(location);
+
   if (redirect) return <Redirect to="/" />;
   return (
     <>
@@ -41,7 +42,7 @@ const Dashboard = ({ location }) => {
         <link rel="stylesheet" href="/css/dashboard.css" />
       </Helmet>
 
-      <DashboardNav user={user} />
+      <DashboardNav location={location} user={user} />
       <Switch>
         {/* <Route exact path="/dashboard/profile" component={DashboardProfile} /> */}
         <Route
@@ -49,6 +50,7 @@ const Dashboard = ({ location }) => {
           path="/dashboard/announcement"
           component={DashboardAnnouncement}
         />
+        <Route exact path="/dashboard/leaderboard" component={Leaderboard} />
         <Route exact path="/dashboard/aboutus" component={DashboardAboutus} />
         <Route exact path="/dashboard/" component={DashboardContent} />
       </Switch>

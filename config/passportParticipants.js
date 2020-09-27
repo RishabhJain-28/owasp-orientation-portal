@@ -20,21 +20,30 @@ passport.use(
       let participant = await Participant.findOne({ email: profile.email });
 
       if (!participant) {
-        //!
-
         if (req.session.route === "login")
-          return done(null, false, "NOT REGISTERED");
+          return done(
+            "This google id is not registered",
+            false,
+            "NOT REGISTERED"
+          );
 
         const schema = Joi.object({
+          name: Joi.string().trim(),
           branch: Joi.string().min(1).max(150).required().trim(),
           username: Joi.string().min(1).max(150).required().trim(),
-          rollNo: Joi.string().trim().required(),
-          phoneNo: Joi.string().trim().required(),
+          rollNumber: Joi.string().trim().required(),
+          phoneNumber: Joi.string().trim().required(),
         });
 
         const { body } = req.session;
         const { value, error } = schema.validate(body);
-        if (error) return done(null, false, "INVALID INPUT");
+
+        if (error)
+          return done(
+            "INVALID DETAILS... FILL THE FORM PROPERLY",
+            false,
+            "INVALID INPUT"
+          );
 
         participant = new Participant({
           name: profile.displayName,
@@ -56,6 +65,7 @@ passport.use(
 
 // * Passport serializeUser
 passport.serializeUser((participant, done) => {
+  console.log(participant);
   done(null, participant.id);
 });
 

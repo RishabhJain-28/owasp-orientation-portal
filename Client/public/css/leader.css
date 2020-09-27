@@ -111,10 +111,9 @@ h2.username {
   margin-left: 20px;
   color: rgb(198, 198, 198);
 }
-
-/* .active span,
-.fa-group {
-  color: #eb5757 !important;
+/* 
+.active span, .fa-line-chart{
+    color: #3BC0D2 !important;
 } */
 
 /* ----------hover navlink--------- */
@@ -136,7 +135,7 @@ h2.username {
   cursor: pointer;
 }
 
-/* ----------aboutus---------- */
+/* ----------leaderboard---------- */
 
 .col-md-12 {
   max-width: 80vw;
@@ -145,26 +144,45 @@ h2.username {
 
 /* -----heading------ */
 
-div.aboutus h1 {
+div.leaderboard h1 {
   font-weight: bold;
   letter-spacing: 0.2vw;
   font-size: 5vw;
   margin: 1vh auto;
-  color: #eb5757 !important;
+  color: #333 !important;
   text-align: center;
 }
 
-/* ------intro----- */
+span.board {
+  color: #3bc0d2 !important;
+}
 
-div .jumbotron {
-  background-color: transparent;
+/* ------notice----- */
+
+div.row {
+  margin: 0;
+}
+
+div .data {
   padding: 2vh 3vw;
   margin: 3vh auto;
   margin-bottom: 0 !important;
   width: 65vw;
 }
 
-/*-------- IMAGES --------*/
+div .jumbotron {
+  padding: 3vh;
+}
+
+/* div .notice{
+    display: none;
+} */
+
+/*-------- top10 --------*/
+
+.showboard {
+  display: none !important;
+}
 
 .container {
   align-items: center !important;
@@ -172,36 +190,10 @@ div .jumbotron {
   width: 70vw !important;
 }
 
-.gallery-image {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-
-.gallery-image img {
-  width: 25vw;
-  height: auto;
-  transform: scale(1);
-  transition: transform 0.4s ease;
-}
-
-.img-box {
-  box-sizing: content-box;
-  margin: 2vh;
-  height: auto;
-  width: 25vw;
-  overflow: hidden;
-  display: inline-block;
-  color: white;
-  position: relative;
-}
-
-.img-box:hover img {
-  transform: scale(1.1);
-}
-
-.img-box:hover {
-  cursor: pointer;
+#top10 {
+  background-color: rgb(68, 68, 68) !important;
+  margin-bottom: 2vh !important;
+  border-radius: 5vw;
 }
 
 /* --------------MEDIA QUERY------------- */
@@ -246,18 +238,6 @@ div .jumbotron {
     border: 0.15vw solid #fff;
     box-shadow: 0 0 0 4px #fff;
   }
-
-  .gallery-image img {
-    width: 60vw !important;
-    height: auto;
-  }
-
-  .img-box {
-    box-sizing: content-box;
-    margin: 10px;
-    height: auto;
-    width: 60vw;
-  }
 }
 
 @media (max-width: 850px) {
@@ -293,7 +273,7 @@ div .jumbotron {
     width: auto;
   }
 
-  .aboutus span {
+  .leaderboard span {
     font-size: 6vh;
     margin-bottom: 3vh;
   }
@@ -308,10 +288,25 @@ div .jumbotron {
     padding: 0 !important;
     margin-left: 1vw !important;
   }
+}
 
-  div.gallery-image {
-    margin-top: 0 !important;
-    margin-bottom: 5vh;
+/* -----specific---- */
+
+@media (max-height: 400px) {
+  .side-menu {
+    width: 8vw !important;
+  }
+
+  .logo a img {
+    margin-left: 0.8vw;
+    height: 2vw;
+    width: auto;
+  }
+}
+
+@media (max-height: 330px) {
+  .side-menu {
+    width: 12vw !important;
   }
 }
 
@@ -327,11 +322,11 @@ div .jumbotron {
     font-size: 4vh;
   }
 
-  .col-12 {
-    margin: 5vh 0 0 17vw;
-    padding: 0;
-    width: 120vw;
-  }
+  /* .col-12{
+        margin-left: 17vw ;
+        padding: 0;
+        width: 120vw;
+    } */
 
   .logo a img {
     margin-left: 1vw;
@@ -346,12 +341,12 @@ div .jumbotron {
     margin-right: 1vw !important;
   }
 
-  .aboutus span {
+  .leaderboard span {
     font-size: 4vh;
     margin-bottom: 3vh;
   }
 
-  .aboutus {
+  .leaderboard {
     margin-left: 3vw;
   }
 
@@ -361,7 +356,7 @@ div .jumbotron {
 }
 
 @media (max-width: 450px) {
-  .aboutus {
+  .leaderboard {
     text-align: center !important;
     align-content: center !important;
   }
