@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>        
+        <link rel="stylesheet" href="leader.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>       
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">     
+        <title>
+            LEADERBOARD
+        </title>
+    </head>
+    <body>
+        
+        <!-- ------------sidebar---------- -->
+        
+        <div class="side-menu">
+
+            <div class="logo">
+                <a class="navbar-brand" href="../REGISTRATION\IMAGES\owasp_logo-13.png"><img alt="LOGO" 
+                 src="../REGISTRATION/IMAGES/owasp_logo-13.png"></a>
+            </div>
+
+            <div class="profile">
+                    <div class="avatar" style="align-content: center;"><img  src="../Dashboard/pics/sushi.jpg"></div>
+                    <br>
+                    <h2 class="username">USERNAME</h2>
+            </div>
+
+            <ul class="left-nav">
+                <li><a href="../Dashboard/dashboard1.html" class="nav-item" id="dashboard"><i class="fa fa-dashboard" ></i><span>DASHBOARD</span></a></li>
+                <li><a class="nav-item" id="profile"><i class="fa fa-user-circle"></i><span>YOUR PROFILE</span></a></li>
+                <li><a href="../ANNOUNCEMENTS/announcements.html" class="nav-item" id="announcements"><i class="fa fa-calendar-minus-o"></i><span>ANNOUNCEMENTS</span></a></li>
+                <li><a href="../LEADERBOARD/leaderboard.html" class="nav-item active" id="leaderboard"><i class="fa fa-line-chart"></i><span>LEADERBOAD</span></a></li>
+                <li><a href="../ABOUT US/about us.html" class="nav-item" id="about us"><i class="fa fa-group"></i><span>ABOUT US</span></a></li>
+                <li><a href="../CONTACT US/contactus.html" class="nav-item" id="dashboard"><i class="fa fa-envelope-open"></i><span>CONTACT US</span></a></li>
+                <li><a href="../REGISTRATION/REGISTRATION.html" class="side-signout " role="button" aria-pressed="true"><i class="fa fa-power-off"></i><span>SIGN OUT</span></a></li>
+            </ul>
+        </div>
+
+        <!-- -----------dashbaord right side------------ -->
+
+        <div class="container row" data-aos="fade-right" data-aos-duration="3000">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="leaderboard">
+                  <h1>
+                      <span class="leader">LEADER</span><span class="board">BOARD</span>
+                  </h1>
+                  
+                </div>
+                <div class="container data">
+                    <div class="jumbotron notice">
+                    <p>
+                        No leaderboard to show as of now!
+                    </p>
+                    </div>
+                    
+                    <div class="row showboard">
+                        <div class="col-12 align-content-start">
+                            <div class=" jumbotron 1" id="top10"></div>
+                        </div>
+                        <div class="col-12 align-content-start">
+                            <div class=" jumbotron 2" id="top10"></div>
+                        </div>
+                        <div class="col-12 align-content-start">
+                            <div class=" jumbotron 3" id="top10"></div>
+                        </div>
+                        <div class="col-12 align-content-start">
+                            <div class=" jumbotron 4" id="top10"></div>
+                        </div>
+                        <div class="col-12 align-content-start">
+                            <div class=" jumbotron 5" id="top10"></div>
+                        </div>
+                        <div class="col-12 align-content-start">
+                            <div class=" jumbotron 6" id="top10"></div>
+                        </div>
+                        <div class="col-12 align-content-start">
+                            <div class=" jumbotron 7" id="top10"></div>
+                        </div>
+                        <div class="col-12 align-content-start">
+                            <div class=" jumbotron 8" id="top10"></div>
+                        </div>
+                        <div class="col-12 align-content-start">
+                            <div class=" jumbotron 9" id="top10"></div>
+                        </div>
+                        <div class="col-12 align-content-start">
+                            <div class=" jumbotron 10" id="top10"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <script>
+            AOS.init();
+        </script>
+    </body>
+</html>

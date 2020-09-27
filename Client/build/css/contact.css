@@ -1,0 +1,158 @@
+body{
+    background-color: rgb(233, 233, 233) !important;
+}
+
+/* --------------NAV BAR-------------- */
+
+nav {
+    background-color: #333;
+    padding: 0 0 !important;
+    margin: 0 0 !important;
+    position: fixed !important;
+}
+
+/* ----OWASP LOGO------ */
+
+.navbar-brand .logo{
+      height: 3vw;
+      width: auto;
+      margin-left: 6rem;
+}
+
+.ml-auto{
+    margin-right: auto !important;
+}
+
+.navbar-collapse ul{
+    align-items: center !important;
+}
+
+.navbar-collapse ul li a{
+    color: rgb(169, 169, 169);
+    font-family: poppins;
+    font-size: 1rem;
+}
+
+span .navbar-toggler-icon{
+    color: #fff !important;
+    background-color: #fff !important;
+}
+
+.li-234{
+    margin-left: 1.8rem;
+}
+
+.dashbaord{
+    margin-left: 0 !important;
+    text-decoration: underline !important;
+    font-weight: bold !important;
+}
+
+/* ------nav link stroke hover------ */
+
+nav ul li a,
+nav ul li a:after,
+nav ul li a:before {
+  transition: all .5s;
+}
+nav ul li a:hover {
+  color: rgb(255, 255, 255);
+}
+
+
+/* ------SIGN IN BUTTON------- */
+
+a.signin {
+    font-family: poppins;
+    size: 3rem;
+    padding: 0.2rem 1rem;
+    margin-right: 8rem;
+	color: #fff;
+	position: relative;
+	border: 2px solid #fff;
+	transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+a.signin:hover {
+	color: #000 !important;
+	background-color: transparent;
+	text-shadow: none;
+}
+
+a.signin:hover:before {
+	bottom: 0%;
+	top: auto;
+	height: 100%;
+}
+
+a.signin:before {
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	height: 0px;
+	width: 100%;
+	z-index: -1;
+	content: '';
+	color: #000 !important;
+	background: #fff;
+	transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+  
+
+
+/* ------contact us------- */
+
+.contact-form{
+    background: #333;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    width: 50%;
+}
+.contact-form .form-control{
+    border-radius:1rem;
+}
+.contact-image{
+    text-align: center;
+    z-index: 10;
+}
+.contact-image img{
+    border-radius: 6rem;
+    border: 4px solid #fff;
+    z-index: 100;
+    width: 11%;
+    margin-top: -3%;
+    background-color: white;
+}
+.contact-form form{
+    padding: 14%;
+}
+.contact-form form .row{
+    margin-bottom: -7%;
+}
+.contact-form h3{
+    margin-bottom: 8%;
+    margin-top: -10%;
+    text-align: center;
+    color: #fff;
+}
+.contact-form .btnContact {
+    width: 50%;
+    border: none;
+    border-radius: 1rem;
+    padding: 1.5%;
+    background: #fff;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+}
+.btnContactSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    cursor: pointer;
+}

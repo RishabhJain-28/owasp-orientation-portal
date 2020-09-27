@@ -1,0 +1,12 @@
+.question {
+    background-color: white;
+    height:auto;
+    box-shadow: 15px 18px 35px 0px rgba(97,97,97,1);
+    margin-bottom: 20px;
+    border-radius: 20px;
+    padding: 50px;
+}
+
+h6 {
+    font-size: 20px;
+}

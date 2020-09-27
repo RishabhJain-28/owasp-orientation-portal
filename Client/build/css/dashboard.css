@@ -1,0 +1,391 @@
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      rgba(243, 241, 241, 0.864) 100%
+    ),
+    url("/IMAGES/bg.jpg") !important;
+  background-attachment: fixed;
+  z-index: -10;
+  background-size: cover;
+  -webkit-animation: backgroundScroll 15s linear 1;
+  -webkit-animation-fill-mode: forwards;
+  animation: backgroundScroll 15s linear 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes backgroundScroll {
+  from {
+    background-position: 200px 0;
+  }
+  to {
+    background-position: 0 0px;
+  }
+}
+
+@-webkit-keyframes backgroundScroll {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -180px 0px;
+  }
+}
+
+/* ----------------SIDE-BAR---------------- */
+
+/* ----------dashboard---------- */
+
+.col-md-12 {
+  max-width: 80vw;
+  margin: 2.5vh 5vw 3vh 25vw;
+}
+
+div.dashboard h1 {
+  font-weight: bold;
+  letter-spacing: 0.2vw;
+  font-size: 5vw;
+  margin: 1vh auto;
+  color: white !important;
+  text-align: center;
+}
+
+/* -----heading------ */
+
+h1 .dash {
+  color: #eb5757;
+}
+
+h1 .board {
+  color: #3bc0d2;
+}
+
+/* ------intro----- */
+
+div .jumbotron {
+  background-color: transparent;
+  border: 2px solid rgb(154, 154, 154);
+  padding: 2vh 3vw;
+  margin: 3vh auto;
+  width: 65vw;
+}
+
+/*-------- flex container --------*/
+
+.container {
+  align-items: center !important;
+  align-content: center !important;
+  width: 70vw !important;
+}
+
+.flex-container {
+  display: flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -webkit-flex;
+  justify-content: space-around;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  -webkit-flex-flow: row wrap;
+  position: relative;
+  height: 22vh;
+  width: 100vw;
+}
+
+.flex-item {
+  color: #fff;
+  height: 10vh;
+  margin: 10px 0;
+  padding: 0;
+  position: relative;
+  height: 20vh;
+  min-width: 20vw;
+}
+
+.flex-item-inner {
+  display: flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -webkit-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 9vh;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  color: #fff;
+  cursor: pointer;
+}
+
+/*-------- cards --------*/
+
+.card-front,
+.card-back {
+  border: 2px solid rgb(160, 159, 159);
+  background-color: transparent;
+  color: #333;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20vw;
+  height: 20vh;
+  padding: 20px;
+  margin: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  justify-content: flex-end;
+}
+
+.card-front i.tile-icon {
+  display: block;
+  margin: 1vh auto 2vh auto;
+  text-align: center;
+}
+
+.card-front h3 {
+  text-align: center;
+  font-size: 18px;
+  font-weight: normal;
+  margin: 0 0 10px 0;
+}
+
+.card-front p.detail {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-back {
+  border: 0 !important;
+  background-color: #333;
+  -webkit-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+
+.card-back p.title,
+.card-back p.desc,
+.card-back p.link {
+  color: #ffffff;
+}
+
+/*-------- cards / flip effect --------*/
+
+.flex-item:hover .card-front {
+  -webkit-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+
+.flex-item:hover .card-back {
+  -webkit-transform: rotateY(0);
+  transform: rotateY(0);
+}
+
+/* --------------MEDIA QUERY------------- */
+
+@media (min-width: 1550px) {
+  .container {
+    max-width: 3000px !important;
+  }
+
+  .side-menu span {
+    font-size: 1.2em;
+    margin-left: 10px;
+  }
+
+  .side-menu i {
+    font-size: 1.2em;
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .side-menu span {
+    font-size: 0.7em;
+    margin-left: 10px;
+  }
+
+  .side-menu i {
+    font-size: 0.7em;
+    margin-left: 20px;
+  }
+
+  .side-menu .avatar img {
+    height: 12vh;
+    width: auto;
+    border: 0.15vw solid #fff;
+    box-shadow: 0 0 0 4px #fff;
+  }
+
+  .card-front i.tile-icon {
+    margin: 0 auto 1.5vh auto;
+    text-align: center;
+  }
+
+  .card-front h3 {
+    font-size: 1.3vw;
+    font-weight: normal;
+  }
+}
+
+@media (max-width: 850px) {
+  .side-menu a span {
+    display: none;
+  }
+
+  .side-menu .profile {
+    display: none;
+  }
+
+  .side-menu {
+    width: 13vw;
+  }
+
+  .side-menu a i {
+    display: block;
+    line-height: 10vh;
+    margin-left: 0;
+    font-size: 4vh;
+  }
+
+  .col-md-12,
+  .col-sm-12 {
+    margin: 5vh 0 0 17vw;
+    padding: 0;
+    width: 120vw;
+  }
+
+  .logo a img {
+    margin-left: 1vw;
+    height: 2.5vw;
+    width: auto;
+  }
+
+  .dashboard span {
+    font-size: 6vh;
+    margin-bottom: 3vh;
+  }
+
+  .jumbotron {
+    align-content: center !important;
+    font-size: 2vh;
+  }
+
+  .card-front i.tile-icon {
+    font-size: 6vh;
+  }
+
+  .card-front h3 {
+    font-size: 1.8vw;
+    font-weight: normal;
+  }
+
+  .container {
+    align-content: center;
+    padding: 0 !important;
+    margin-left: 1vw !important;
+  }
+
+  .card-back p.title,
+  .card-back p.desc,
+  .card-back p.link {
+    font-size: 1vh;
+  }
+}
+
+@media (max-width: 620px) {
+  .side-menu {
+    width: 12vw;
+  }
+
+  .side-menu a i {
+    align-content: center !important;
+    line-height: 10vh;
+    margin-left: 0;
+    font-size: 4vh;
+  }
+
+  .col-12 {
+    margin: 5vh 0 0 17vw;
+    padding: 0;
+    width: 120vw;
+  }
+
+  .logo a img {
+    margin-left: 1vw;
+    height: 3vw;
+    width: auto;
+  }
+
+  .container {
+    align-content: center;
+    padding: 0 !important;
+    margin-left: 1vw !important;
+    margin-right: 1vw !important;
+  }
+
+  .dashboard span {
+    font-size: 4vh;
+    margin-bottom: 3vh;
+  }
+
+  .dashboard {
+    margin-left: 3vw;
+  }
+
+  .jumbotron {
+    font-size: 2vh;
+  }
+
+  .card-front i.tile-icon {
+    font-size: 6vh;
+  }
+
+  .card-front h3 {
+    font-size: 2vw;
+    font-weight: normal;
+  }
+}
+
+@media (max-width: 450px) {
+  .dashboard {
+    text-align: center !important;
+    align-content: center !important;
+  }
+  .side-menu a i {
+    display: block;
+    line-height: 8vh;
+    text-align: center;
+    margin-left: 0;
+    font-size: 6vw;
+  }
+
+  .card-front i.tile-icon {
+    font-size: 4vh;
+  }
+
+  .container {
+    margin-left: 0.2vw !important;
+    margin-right: 1vw !important;
+  }
+
+  .card-front,
+  .card-back {
+    width: 20vw;
+    height: 15vh;
+    margin: 0;
+    padding: 4vh 0 0 0 !important;
+  }
+}

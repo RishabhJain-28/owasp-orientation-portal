@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>        
+        <link rel="stylesheet" href="dashboard1.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>       
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">     
+        <title>
+            DASHBOARD
+        </title>
+    </head>
+    <body>
+        
+        <!-- ------------sidebar---------- -->
+        
+        <div class="side-menu" data-aos="fade-right" data-aos-duration="3000">
+
+            <div class="logo">
+                <a class="navbar-brand" href="../REGISTRATION\IMAGES\owasp_logo-13.png"><img alt="LOGO" 
+                 src="../REGISTRATION/IMAGES/owasp_logo-13.png"></a>
+            </div>
+
+            <div class="profile">
+                    <div class="avatar" style="align-content: center;"><img  src="../Dashboard/pics/sushi.jpg"></div>
+                    <br>
+                    <h2 class="username">USERNAME</h2>
+            </div>
+
+            <ul class="left-nav">
+                <li><a class="nav-item active" id="dashboard"><i class="fa fa-dashboard"></i><span>DASHBOARD</span></a></li>
+                <li><a class="nav-item" id="profile"><i class="fa fa-user-circle"></i><span>YOUR PROFILE</span></a></li>
+                <li><a class="nav-item" id="announcements"><i class="fa fa-calendar-minus-o"></i><span>ANNOUNCEMENTS</span></a></li>
+                <li><a class="nav-item" id="leaderboard"><i class="fa fa-line-chart"></i><span>LEADERBOAD</span></a></li>
+                <li><a class="nav-item" id="about us"><i class="fa fa-group"></i><span>ABOUT US</span></a></li>
+                <li><a class="nav-item" id="dashboard"><i class="fa fa-envelope-open"></i><span>CONTACT US</span></a></li>
+                <li><a href="#" class="side-signout " role="button" aria-pressed="true"><i class="fa fa-power-off"></i><span>SIGN OUT</span></a></li>
+            </ul>
+        </div>
+
+        <!-- -----------dashbaord right side------------ -->
+
+        <div class="container row" data-aos="fade-right" data-aos-duration="3000">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="dashboard">
+                  <h1>
+                      <span class="dash">DASH</span><span class="board">BOARD</span>
+                  </h1>
+                  
+                </div>
+                <div class="container">
+                    <div class="jumbotron">
+                    <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat, porro? Nisi, sunt soluta? Expedita esse facilis temporibus recusandae 
+                        distinctio repudiandae reprehenderit dolorem praesentium error autem, ratione accusamus quos ad aspernatur!
+                    </p>
+                    </div>
+                    <div class="row">
+                        <!-- flex-container -->
+                        <div class="flex-container">
+                            <!-- flex-item -->
+                            <div class="flex-item">
+                                <div class="flex-item-inner">
+                                    <!-- card -->
+                                        <div class="card-front">
+                                            <i class="fa fa-video-camera fa-3x tile-icon icon-white"></i>
+                                            <h3>Orientation link</h3>
+                                        </div>
+                                        <div class="card-back bg-dark">
+                                            <p class="title">Lorem ipsum dolor sit amet</p>
+                                            <p class="desc">Pellentesque magna nunc</p>
+                                            <p class="link">Details <i class="fa fa-chevron-circle-right"></i></p>
+                                        </div>
+                                    <!-- /card -->
+                                </div>
+                            </div>
+                            <!-- /flex-item -->
+                            
+                            <!-- flex-item -->
+                            <div class="flex-item">
+                                <div class="flex-item-inner">
+                                    <!-- card -->
+                                    <a href="#">
+                                        <div class="card-front">
+                                            <i class="fa fa-indent fa-3x tile-icon icon-white"></i>
+                                            <h3>Fun Quiz link</h3>
+                                        </div>
+                                        <div class="card-back bg-dark">
+                                            <p class="title">Praesent varius mi sem</p>
+                                            <p class="desc">Cras posuere consequat nisl, ut rh</p>
+                                            <p class="link">Details <i class="fa fa-chevron-circle-right"></i></p>
+                                        </div>
+                                    </a>
+                                    <!-- /card -->
+                                </div>
+                            </div>
+                            <!-- /flex-item -->
+                            
+                            <!-- flex-item -->
+                            <div class="flex-item">
+                                <div class="flex-item-inner">
+                                    <!-- card -->
+                                    <a href="#">
+                                        <div class="card-front">
+                                            <i class="fa fa-file-text fa-3x tile-icon icon-white"></i>
+                                            <h3>Coding quiz link</h3>
+                                        </div>
+                                        <div class="card-back bg-dark">
+                                            <p class="title">Vestibulum eget sem malesuada</p>
+                                            <p class="desc">Etiam imperdiet ullamcorpe</p>
+                                            <p class="link">Details <i class="fa fa-chevron-circle-right"></i></p>
+                                        </div>
+                                    </a>
+                                    <!-- /card -->
+                                </div>
+                            </div>
+                            <!-- /flex-item -->
+                        </div>
+                        <!-- /flex-container -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <script>
+            AOS.init();
+        </script>
+    </body>
+</html>

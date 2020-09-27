@@ -1,0 +1,648 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* backgroung---------------------- */
+
+body {
+  background-size: cover !important;
+  background-image: linear-gradient(
+      180deg,
+      #111111 0%,
+      rgba(32, 26, 26, 0) 100%
+    ),
+    url("/IMAGES/bg-image-01.png");
+  background-attachment: fixed;
+  font-family: poppins;
+}
+
+/* --------------NAV BAR-------------- */
+
+.navCustom {
+  background-color: #eb5757;
+  padding: 0 0 !important;
+  margin: 0 0 !important;
+  position: fixed !important;
+}
+
+/* ----OWASP LOGO------ */
+
+.navbar-brand .logo {
+  height: 3vw;
+  width: auto;
+  margin-left: 6rem;
+}
+
+.ml-auto {
+  margin-right: auto !important;
+}
+
+.navbar-collapse ul {
+  align-items: center !important;
+}
+
+.navbar-collapse ul li a .nav-link {
+  color: rgb(255, 217, 217);
+  font-family: poppins;
+  font-size: 1rem;
+}
+.nav-link {
+  color: rgb(255, 217, 217) !important;
+  font-family: poppins;
+  font-size: 1rem;
+}
+.nav-link:hover {
+  color: rgb(255, 255, 255) !important;
+  text-decoration: underline !important;
+}
+.li-234 {
+  margin-left: 1.8rem;
+}
+
+.dashbaord {
+  margin-left: 0 !important;
+  text-decoration: underline !important;
+  font-weight: bold !important;
+}
+
+/* ------nav link stroke hover------ */
+.signin-desktop-view {
+  display: block;
+}
+nav ul li a,
+nav ul li a:after,
+nav ul li a:before {
+  transition: all 0.5s;
+}
+nav ul li a:hover {
+  color: rgb(255, 255, 255);
+}
+
+/* ------SIGN IN BUTTON------- */
+
+a.signin {
+  font-family: poppins;
+  size: 3rem;
+  padding: 0.2rem 1rem;
+  margin-right: 8rem;
+  color: #fff;
+  position: relative;
+  border: 2px solid #fff;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+a.signin:hover {
+  color: #000 !important;
+  background-color: transparent;
+  text-shadow: none;
+}
+
+a.signin:hover:before {
+  bottom: 0%;
+  top: auto;
+  height: 100%;
+}
+
+a.signin:before {
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 0px;
+  width: 100%;
+  z-index: -1;
+  content: "";
+  color: #000 !important;
+  background: #fff;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+/* -------FORM--------- */
+
+.contact {
+  margin-top: 10rem;
+  margin-left: 20rem;
+  margin-right: 20rem;
+  align-items: center;
+}
+
+/* ----blue row---- */
+
+#head {
+  background: #3bc0d2;
+  text-align: center;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+}
+
+/* -----registration heading----- */
+
+.heading-form {
+  padding: 0.5rem 0;
+  float: none;
+  margin: 0 auto;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 450;
+  letter-spacing: 0.1em;
+  text-decoration-line: underline;
+}
+.responsive-view {
+  display: none;
+}
+/* --------left part form-------- */
+
+.col-md-5 {
+  background: #fff;
+}
+/* 
+.orientation-info{        
+    border-right: 0.06vw solid black !important;   
+} */
+
+.info-content {
+  text-align: center;
+  margin: 5rem 2.5rem;
+  font-family: poppins;
+}
+
+.info-content h1 {
+  font-family: poppins;
+  font-weight: bold;
+  font-size: 8vh;
+  letter-spacing: 1vw;
+}
+.code {
+  color: #3bc0d2;
+}
+
+/* ------countdown timer----- */
+.countdown {
+  text-decoration: underline;
+  margin-top: 2rem;
+  font-weight: normal;
+}
+
+.contain {
+  align-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #3bc0d2;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+ul.timer-li {
+  margin: 0.5rem auto;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.timer-li li {
+  text-align: center;
+  display: flex !important;
+  display: inline-block !important;
+  font-size: 0.8em;
+  list-style-type: none !important;
+  padding: 0.31em;
+  text-transform: uppercase;
+}
+
+.timer-li li span {
+  display: block;
+  font-size: 1.5rem;
+}
+
+/* --------right part form------- */
+
+.register-form {
+  margin: 2rem 2.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.col-md-7 {
+  background: #fff;
+}
+
+.register-form label {
+  font-family: poppins;
+  font-weight: 400;
+}
+
+/* -------google sign in------ */
+
+.submit-button {
+  text-align: center;
+  align-items: center !important;
+}
+
+.submit-google-btn {
+  padding: 0.1rem 2rem;
+  margin: 0.2rem auto;
+  background-color: #eb5757;
+  color: #fff;
+  font-family: poppins;
+  vertical-align: middle;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+.submit-google-btn:hover {
+  color: #ffffff;
+  background: #3bc0d2;
+}
+
+/* ---------phone css responsive -------- */
+
+section.phone-form-section {
+  display: none;
+  align-content: center;
+}
+
+.contact-phone {
+  margin-bottom: 4rem;
+  align-items: center;
+  margin-right: 8rem;
+  margin-left: 8rem;
+  text-align: center;
+}
+
+/* --------learn code fun -------- */
+
+.orientation-info-phone {
+  margin-top: 6rem;
+}
+
+.info-content-phone {
+  text-align: center;
+  margin: 4rem 2.5rem;
+  font-family: poppins;
+}
+
+.info-content-phone h1 {
+  color: #fff;
+  font-family: poppins;
+  font-weight: bold;
+  font-size: 7vh;
+  letter-spacing: 1.5vw;
+}
+
+.code-phone {
+  color: #3bc0d2 !important;
+}
+
+/* ------countdown timer phone----- */
+
+.countdown-phone {
+  text-decoration: underline;
+  color: #fff;
+  margin-top: 2rem;
+  font-weight: normal;
+  font-size: 1.4rem;
+}
+
+.container-phone {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #3bc0d2;
+  text-align: center;
+}
+
+ul.timer-li-phone {
+  margin: 0.5rem auto;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.timer-li-phone li {
+  text-align: center;
+  display: flex !important;
+  display: inline-block !important;
+  font-size: 1em;
+  list-style-type: none !important;
+  padding: 0.31em;
+  text-transform: uppercase;
+}
+
+.timer-li-phone li span {
+  display: block;
+  font-size: 1.5rem;
+}
+
+/* ----blue row phone---- */
+
+#head-phone {
+  background: #3bc0d2;
+  text-align: center;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+}
+
+/* -----registration heading phone----- */
+
+.heading-form-phone {
+  padding: 0.5rem 0;
+  float: none;
+  margin: 0 auto;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 450;
+  letter-spacing: 0.1em;
+  text-decoration-line: underline;
+}
+
+/* --------white part form phone------- */
+
+.register-form-phone {
+  margin: 2rem 2.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.form-body {
+  background: #fff;
+}
+
+.register-form-phone label {
+  font-family: poppins;
+  font-weight: 400;
+}
+
+/* -------google sign in phone------ */
+
+.submit-button-phone {
+  text-align: center;
+  align-items: center !important;
+}
+
+.submit-google-phone {
+  padding: 0.1rem 2rem;
+  margin: 0.2rem auto;
+  background-color: #eb5757;
+  color: #fff;
+  font-family: poppins;
+  vertical-align: middle;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+.submit-google:hover {
+  color: #ffffff;
+  background: #3bc0d2;
+}
+
+/* -------------phone 2 responsive <600px----------- */
+.phone2-form-section {
+  display: none;
+}
+
+.contact-phone {
+  margin-bottom: 4rem;
+  align-items: center;
+  margin-right: 5rem;
+  margin-left: 5rem;
+  text-align: center;
+}
+
+/* ----blue row phone2---- */
+
+#head-phone2 {
+  background: #3bc0d2;
+  text-align: center;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+}
+
+/* -----registration heading phone2----- */
+
+.heading-form-phone {
+  padding: 0.5rem 0;
+  float: none;
+  margin: 0 auto;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 450;
+  letter-spacing: 0.1em;
+  text-decoration-line: underline;
+}
+
+/* --------white part form phone2------- */
+
+.register-form-phone {
+  margin: 2rem 2.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.col-12 {
+  max-width: 50%;
+  background: #fff;
+}
+
+.register-form-phone label {
+  font-family: poppins;
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+
+/* -------google sign in phone2------ */
+
+.submit-button-phone {
+  text-align: center;
+  align-items: center !important;
+}
+
+.submit-google {
+  font-size: 0.5rem !important;
+  padding: 0.1rem 2rem;
+  margin: 1rem auto;
+  background-color: #eb5757;
+  color: #fff;
+  font-family: poppins;
+  vertical-align: middle;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+.submit-google:hover {
+  color: #ffffff;
+  background: #3bc0d2;
+}
+
+/* --------media query------ */
+
+@media only screen and (max-width: 1609px) {
+  .contact {
+    margin-top: 8rem;
+    margin-left: 18rem;
+    margin-right: 18rem;
+  }
+
+  .info-content h1 {
+    font-size: 7vh;
+    letter-spacing: 0.7vw;
+  }
+}
+
+@media only screen and (max-width: 1440px) {
+  .contact {
+    margin-top: 10rem;
+    margin-left: 18rem;
+    margin-right: 18rem;
+  }
+}
+
+@media only screen and (max-width: 1340px) {
+  .navbar-brand .logo {
+    height: 4vw;
+    width: auto;
+    margin-left: 4rem;
+  }
+
+  .contact {
+    margin-top: 8rem;
+    margin-left: 15rem;
+    margin-right: 15rem;
+  }
+  .register-form label {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  a.signin {
+    size: 2rem;
+    padding: 0.1rem 0.8rem;
+    margin-right: 6rem;
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .contact {
+    margin-left: 15rem;
+    margin-right: 15rem;
+  }
+
+  /* ---timer--- */
+  .timer-li li {
+    font-size: 0.8em;
+  }
+
+  .timer-li li {
+    font-size: 0.6em;
+  }
+
+  .info-content h1 {
+    font-size: 6vh;
+    letter-spacing: 0.6vw;
+  }
+}
+
+@media only screen and (min-height: 910px) {
+  .contact {
+    margin-top: 12rem;
+  }
+}
+
+/* -----phone media query----- */
+@media only screen and (max-width: 1040px) {
+  .pc-form-section {
+    display: none;
+  }
+  .signin-desktop-view {
+    display: none;
+  }
+  .responsive-view {
+    display: block;
+  }
+  .phone-form-section {
+    display: contents !important;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .navbar-brand .logo {
+    height: 3vw;
+    width: auto;
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .phone-form-section {
+    /* display: none !important; */
+    /* max-width: 50%; */
+  }
+  section {
+    min-width: 50%;
+  }
+  .contact-phone {
+    margin-bottom: 4rem;
+    align-items: center;
+    margin-right: 5rem;
+    margin-left: 5rem;
+    text-align: center;
+  }
+  /* .phone2-form-section {
+    display: block !important;
+  } */
+
+  a.signin {
+    size: 1rem;
+    padding: 0.1rem 0.8rem;
+    margin-right: 6rem;
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .submit-google {
+    font-size: 1rem !important;
+    padding: 0.1rem 1rem;
+    margin: 1rem 0 !important;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .register-form-phone label {
+    font-family: poppins;
+    font-weight: 400;
+    font-size: 0.8rem;
+  }
+
+  .contact-phone {
+    margin-bottom: 4rem;
+    align-items: center;
+    margin-right: 2.5rem;
+    margin-left: 2.5rem;
+
+    text-align: center;
+  }
+
+  .countdown-phone {
+    font-size: 0.8rem;
+  }
+
+  .timer-li-phone li {
+    font-size: 0.4em;
+  }
+}
+
+@media only screen and (max-width: 270px) {
+  .submit-google {
+    font-size: 0.6rem !important;
+    padding: 0.1rem 0.5rem;
+    margin: 1rem 0 !important;
+  }
+
+  .register-form-phone label {
+    font-family: poppins;
+    font-weight: 400;
+    font-size: 0.6rem;
+  }
+}
