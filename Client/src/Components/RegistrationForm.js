@@ -13,7 +13,8 @@ const RegistrationForm = ({ buttonText, ...rest }) => {
   return (
     <Form
       {...rest}
-      action={`${process.env.REACT_APP_BASE_URL}/api/auth/register`}
+      // action={`${process.env.REACT_APP_BASE_URL}/api/auth/register`}
+      action={`http://localhost:5000/api/auth/register`}
       method="POST"
     >
       <Input
@@ -22,6 +23,7 @@ const RegistrationForm = ({ buttonText, ...rest }) => {
         label="NAME:"
         value={name}
         name="name"
+        required
         onChange={(e) => setName(e.target.value)}
       />
       <Input
@@ -30,6 +32,7 @@ const RegistrationForm = ({ buttonText, ...rest }) => {
         label="USERNAME:"
         value={username}
         name="username"
+        required
         onChange={(e) => setUsername(e.target.value)}
       />
       <Input
@@ -38,6 +41,7 @@ const RegistrationForm = ({ buttonText, ...rest }) => {
         label="PHONE NUMBER:"
         value={phoneNumber}
         name="phoneNumber"
+        required
         onChange={(e) => setPhoneNumber(e.target.value)}
       />
       <Input
@@ -46,6 +50,7 @@ const RegistrationForm = ({ buttonText, ...rest }) => {
         label="BRANCH:"
         value={branch}
         name="branch"
+        required
         onChange={(e) => setBranch(e.target.value)}
       />
       <Input
@@ -54,6 +59,7 @@ const RegistrationForm = ({ buttonText, ...rest }) => {
         label="ROLL NUMBER:"
         value={rollNumber}
         name="rollNumber"
+        required
         onChange={(e) => setRollNumber(e.target.value)}
       />
       {/* <div className="centered form-group"> */}
