@@ -15,6 +15,9 @@ const app = express();
 // * Routes import
 const auth = require("./routes/auth");
 const participants = require("./routes/participants");
+const quiz = require("./routes/quiz");
+const question = require("./routes/questions");
+const questionBank = require("./routes/questionBank");
 
 // * Middleware
 app.use(cors());
@@ -64,6 +67,9 @@ mongoose.connect(
 // * Routes setup
 app.use("/api/auth", auth);
 app.use("/api/participants", participants);
+app.use("/api/quiz", quiz);
+app.use("/api/question", question);
+app.use("/api/questionBank", questionBank);
 
 app.use(express.static(path.resolve(__dirname, "Client", "build")));
 
