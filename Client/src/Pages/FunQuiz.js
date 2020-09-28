@@ -5,7 +5,8 @@ import { ButtonGroup, ProgressBar } from "react-bootstrap";
 import axios from "../util/axios";
 import { Redirect } from "react-router-dom";
 const FunQuiz = () => {
-  const [maxTime] = useState(3);
+  const [start, setStart] = useState(false);
+  const [maxTime] = useState(15);
   const [time, setTime] = useState(0);
   const [timerID, setTimerID] = useState("");
   const [q_index, setQ_index] = useState(0);
@@ -37,8 +38,10 @@ const FunQuiz = () => {
       options: ["option 2-1", "option 2-2", "option 2-3", "option 2-4"],
     },
   ]);
+  useEffect(() => {});
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
+
     let time = localStorage.getItem("session#hash%20t"); //!time
     let index = localStorage.getItem("session_$index%"); //!q_index
     if (!index) {
@@ -69,9 +72,10 @@ const FunQuiz = () => {
     }
     setTime(time ? decodedTime : 0);
     setQ_index(index ? decodedIndex : 0);
-  }, []);
+  }, [start]);
 
   useEffect(() => {
+    if (!start) return;
     if (submit) return;
     setTimerID(
       setTimeout(() => {
@@ -87,7 +91,7 @@ const FunQuiz = () => {
       }, 1000)
     );
     clearTimeout(timerID);
-  }, [time]);
+  }, [time, start]);
 
   function submitQuiz() {
     console.log("QUIZ SUBMIITED");
@@ -106,7 +110,8 @@ const FunQuiz = () => {
     setQ_index(i);
   }
   if (!user) return <Redirect to="/" />;
-  console.log(q_index);
+  //   if(!start)return (<>
+  //   </>)
   return (
     <div className="quiz_body">
       <div className="container">
@@ -123,45 +128,55 @@ const FunQuiz = () => {
           </h1>
         </div>
         {!submit ? (
-          <>
+          !start ? (
             <div className="mb-2 question">
-              <Question question={questions[q_index]} />
-              {q_index === questions.length - 1 && maxTime - time < 5 && (
-                <p>
-                  Auto submitting in{" "}
-                  <span className="auto_submit_span">{maxTime - time}</span>{" "}
-                  seconds...
-                </p>
-              )}
+              <ButtonGroup className="m-2 ml-4 mr-4">
+                <button className="btn blue_btn" onClick={() => setStart(true)}>
+                  Start
+                </button>
+              </ButtonGroup>
             </div>
-            <ProgressBar
-              className="mb-3"
-              animated
-              now={time}
-              min={0}
-              max={maxTime}
-            />
-            <div className="container">
-              <div className="row justify-content-center">
-                {/* <ButtonGroup className="m-2 ml-4 mr-4">
-                  <button className="btn blue_btn">Previous</button>
-                </ButtonGroup> */}
-
-                <ButtonGroup className="m-2 ml-4 mr-4">
-                  {q_index === questions.length - 1 ? (
-                    <button className="btn pink_btn">Submit</button> //! add submit
-                  ) : (
-                    <button className="btn blue_btn" onClick={nextQuestion}>
-                      Next
-                    </button>
-                  )}
-                </ButtonGroup>
-                {/* <ButtonGroup className="m-2 ml-4 mr-4">
-                  <button className="btn blue_btn">Next</button>
-                </ButtonGroup> */}
+          ) : (
+            <>
+              <div className="mb-2 question">
+                <Question question={questions[q_index]} />
+                {q_index === questions.length - 1 && maxTime - time < 5 && (
+                  <p>
+                    Auto submitting in{" "}
+                    <span className="auto_submit_span">{maxTime - time}</span>{" "}
+                    seconds...
+                  </p>
+                )}
               </div>
-            </div>
-          </>
+              <ProgressBar
+                className="mb-3"
+                animated
+                now={time}
+                min={0}
+                max={maxTime}
+              />
+              <div className="container">
+                <div className="row justify-content-center">
+                  {/* <ButtonGroup className="m-2 ml-4 mr-4">
+                        <button className="btn blue_btn">Previous</button>
+                      </ButtonGroup> */}
+
+                  <ButtonGroup className="m-2 ml-4 mr-4">
+                    {q_index === questions.length - 1 ? (
+                      <button className="btn pink_btn">Submit</button> //! add submit
+                    ) : (
+                      <button className="btn blue_btn" onClick={nextQuestion}>
+                        Next
+                      </button>
+                    )}
+                  </ButtonGroup>
+                  {/* <ButtonGroup className="m-2 ml-4 mr-4">
+                        <button className="btn blue_btn">Next</button>
+                      </ButtonGroup> */}
+                </div>
+              </div>
+            </>
+          )
         ) : (
           <AfterSubmit user={user} />
         )}

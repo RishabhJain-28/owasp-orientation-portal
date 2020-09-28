@@ -41,7 +41,7 @@ const DashboardContent = () => {
                   heading="Fun Quiz link"
                   title="Praesent varius mi sem"
                   desc="Cras posuere consequat nisl, ut rh"
-                  link="Details"
+                  link="/funquiz"
                 />
                 <DashboardCard
                   iconClass="fa fa-file-text"

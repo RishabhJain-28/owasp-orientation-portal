@@ -1,10 +1,10 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const DashboardCard = ({ iconClass, heading, title, desc, link }) => {
   return (
     <div className="flex-item">
       <div className="flex-item-inner">
-        <a href="#">
+        <Link to={link}>
           <div className="card-front">
             <i className={`${iconClass} fa-3x tile-icon icon-white`}></i>
 
@@ -14,10 +14,10 @@ const DashboardCard = ({ iconClass, heading, title, desc, link }) => {
             <p className="title">{title}</p>
             <p className="desc">{desc}</p>
             <p className="link">
-              {link} <i className="fa fa-chevron-circle-right"></i>
+              <i className="fa fa-chevron-circle-right"></i>
             </p>
           </div>
-        </a>
+        </Link>
       </div>
     </div>
   );
