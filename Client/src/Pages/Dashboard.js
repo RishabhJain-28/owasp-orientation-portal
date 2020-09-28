@@ -19,6 +19,7 @@ import {
 
 const Dashboard = ({ location }) => {
   const [user, setUser] = useState({});
+  const [quizzes, setQuizzes] = useState([]);
   const [redirect, setRedirect] = useState(false);
   useEffect(() => {
     async function getProfile() {
@@ -32,6 +33,16 @@ const Dashboard = ({ location }) => {
       }
     }
 
+    async function getQuizes() {
+      try {
+        const { data } = await axios.get("/");
+        setQuizzes(data);
+        // localStorage.setItem("user", JSON.stringify(data));
+      } catch (error) {
+        setQuizzes([]);
+      }
+    }
+    getQuizes();
     if (!user.name) getProfile();
   }, []);
 
@@ -53,7 +64,12 @@ const Dashboard = ({ location }) => {
         />
         <Route exact path="/dashboard/leaderboard" component={Leaderboard} />
         <Route exact path="/dashboard/aboutus" component={DashboardAboutus} />
-        <Route exact path="/dashboard/" component={DashboardContent} />
+        <Route
+          exact
+          path="/dashboard"
+          quizzes={quizzes}
+          component={DashboardContent}
+        />
         <Redirect to="/dashboard" />
       </Switch>
     </>

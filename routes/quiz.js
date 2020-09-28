@@ -74,8 +74,8 @@ router.get("/start/:id", async (req, res) => {
     const { data, status } = await axios.post(
       "http://localhost:5000/api/questionBank/generate",
       {
-        // userId: req.user._id,
-        userId: "5f710e9370f4330017c00725",
+        userId: req.user._id,
+        // userId: req.user.,
         quizId: req.params.id,
       }
     );

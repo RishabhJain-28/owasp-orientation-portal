@@ -1,7 +1,7 @@
 import React from "react";
 import DashboardCard from "./DashboardCard";
 
-const DashboardContent = () => {
+const DashboardContent = ({ quizzes }) => {
   return (
     <>
       <div
