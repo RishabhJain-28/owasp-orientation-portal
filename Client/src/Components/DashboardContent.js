@@ -1,6 +1,5 @@
 import React from "react";
 import DashboardCard from "./DashboardCard";
-import { Helmet } from "react-helmet";
 
 const DashboardContent = () => {
   return (
