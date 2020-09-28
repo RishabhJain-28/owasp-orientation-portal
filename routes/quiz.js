@@ -24,11 +24,11 @@ router.post("/new", async (req, res) => {
     const { value, error } = validation.createQuiz(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
-    const reqBody = omit(value, ["scheduledOn"]);
-
+    // const reqBody = omit(value, ["scheduledOn"]);
+    const reqBody = value;
     const newQuiz = await Quiz.create({
       ...reqBody,
-      scheduledOn: new Date(value.scheduledOn),
+      // scheduledOn: new Date(value.scheduledOn),
     });
 
     res.status(200).send(newQuiz);
@@ -44,13 +44,13 @@ router.put("/edit/:id", async (req, res) => {
     const { value, error } = validation.editQuiz(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
-    const reqBody = omit(value, ["scheduledOn"]);
-
+    // const reqBody = omit(value, ["scheduledOn"]);
+    const reqBody = value;
     const quiz = await Quiz.findByIdAndUpdate(
       req.params.id,
       {
         ...reqBody,
-        scheduledOn: new Date(value.scheduledOn),
+        // scheduledOn: new Date(value.scheduledOn),
       },
       { new: true }
     ).exec();
@@ -84,7 +84,8 @@ router.get("/start/:id", async (req, res) => {
     req.session.quiz = quiz._id;
     req.session.questionBank = data._id;
 
-    res.status(200).send("Quiz Started.");
+    // res.status(200).send("Quiz Started.");
+    res.status(200).send(data);
   } catch (error) {
     console.log("Error occured here \n", error);
     res.status(400).send("Server Denied Request.");

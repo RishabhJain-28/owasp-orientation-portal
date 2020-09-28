@@ -20,6 +20,7 @@ exports.createQuestion = (body) => {
     answer: Joi.string().min(1).max(500).trim().required(),
     points: Joi.number().integer().greater(0).required(),
     quiz: Joi.string().required(),
+    sub: Joi.string().max(25).trim(),
   });
 
   return schema.validate(body);
@@ -44,6 +45,7 @@ exports.editQuestion = (body) => {
     }),
     points: Joi.number().integer().greater(0).required(),
     quiz: Joi.string().required(),
+    sub: Joi.string().max(25).trim(),
   });
 
   return schema.validate(body);
