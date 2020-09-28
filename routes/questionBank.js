@@ -39,10 +39,28 @@ router.post("/generate", async (req, res) => {
     });
     if (existingQuestionBank) return res.status(200).send(existingQuestionBank);
 
-    let questions = await Question.find({ quiz: value.quizId }).exec();
-    questions = questions.map((ques) => ques._id);
-    questions = shuffle(questions);
-    questions = questions.slice(0, 4);
+    let questions = [];
+    if (existingQuiz.haveSubs) {
+      for (const sub of existingQuiz.subs) {
+        console.log(sub);
+        let x = await Question.find({
+          quiz: value.quizId,
+          sub: sub.name,
+        }).exec();
+        x = x.map((i) => i._id);
+        x = shuffle(x);
+        x = x.slice(0, sub.number);
+        console.log(x);
+        questions = [...questions, ...x];
+      }
+    } else {
+      let x = await Question.find({ quiz: value.quizId }).exec();
+      x = x.map((i) => i._id);
+      x = shuffle(x);
+      x = x.slice(0, existingQuiz.noOfQuestions);
+      console.log(x);
+      questions = [...questions, ...x];
+    }
 
     let questionBank = {};
     questions.forEach((id) => {
@@ -53,9 +71,15 @@ router.post("/generate", async (req, res) => {
       participant: value.userId,
       quiz: value.quizId,
       questions: questionBank,
+      questionIds: questions,
     });
 
-    res.status(200).send(newQuestionBank);
+    const final = await QuestionBank.findById(newQuestionBank._id).populate(
+      "questionIds",
+      "-answer"
+    );
+
+    res.status(200).send(final);
   } catch (error) {
     console.log("Error occured here \n", error);
     res.status(400).send("Server denied request.");

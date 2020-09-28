@@ -24,6 +24,10 @@ const questionBankSchema = new mongoose.Schema({
     type: Map,
     of: obj,
   },
+  questionIds: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Question",
+  }],
   score: {
     type: Number,
     default: 0,

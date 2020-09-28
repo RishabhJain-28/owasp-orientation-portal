@@ -42,6 +42,9 @@ const questionSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Quiz",
   },
+  sub: {
+    type: String,
+  },
 });
 
 const Question = mongoose.model("Question", questionSchema);
