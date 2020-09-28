@@ -20,7 +20,7 @@ const questionSchema = new mongoose.Schema({
   ],
   type: {
     type: String,
-    enum: ["mcq", "input"],
+    enum: ["MCQ", "INPUT"],
     required: true,
   },
   options: {
@@ -38,9 +38,9 @@ const questionSchema = new mongoose.Schema({
     min: 0,
     required: true,
   },
-  pool: {
+  quiz: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Pool",
+    ref: "Quiz",
   },
 });
 
