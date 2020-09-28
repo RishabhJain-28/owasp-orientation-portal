@@ -2,6 +2,7 @@ const express = require("express");
 
 // * Models
 const Question = require("../models/questions");
+const Quiz = require("../models/quiz");
 
 // * NPM Packages
 const { omit } = require("lodash");
@@ -22,7 +23,10 @@ router.post("/new", async (req, res) => {
     const { value, error } = validationSchemas.createQuestion(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
-    const reqBody = omit(value, ["answer"]);
+    const quiz = await Quiz.findById(value.quiz).exec();
+    if (!quiz) return res.status(400).send("Quiz does not exist.");
+
+    const reqBody = omit(value, ["answer", "quiz"]);
     const answer = CryptoJS.Rabbit.encrypt(
       value.answer,
       process.env.CRYPTO_KEY
@@ -31,6 +35,7 @@ router.post("/new", async (req, res) => {
     const newQuestion = await Question.create({
       ...reqBody,
       answer,
+      quiz,
     });
     res.status(200).send(newQuestion);
   } catch (error) {
@@ -45,6 +50,9 @@ router.put("/edit/:id", async (req, res) => {
   try {
     const { value, error } = validationSchemas.editQuestion(req.body);
     if (error) return res.status(400).send(error.details[0].message);
+
+    const quiz = await Quiz.findById(value.quiz).exec();
+    if (!quiz) return res.status(400).send("Quiz does not exist.");
 
     const editedQuestion = await Question.findByIdAndUpdate(
       req.params.id,
@@ -66,7 +74,7 @@ router.put("/edit/:id", async (req, res) => {
 router.get("/view/:id", async (req, res) => {
   try {
     const question = await Question.findById(req.params.id)
-      .populate("pool", "name")
+      .populate("quiz", "name")
       .select("-answer")
       .exec();
     if (!question) return res.status(400).send("Question does not exist.");
@@ -83,8 +91,7 @@ router.get("/view/:id", async (req, res) => {
 router.get("/view_master/:id", async (req, res) => {
   try {
     const question = await Question.findById(req.params.id)
-      .populate("pool", "name")
-      .select("-answer")
+      .populate("quiz", "name")
       .exec();
     if (!question) return res.status(400).send("Question does not exist.");
 
@@ -130,7 +137,7 @@ router.put("/changeAnswer/:id", async (req, res) => {
 router.get("/all", async (req, res) => {
   try {
     const questions = await Question.find({})
-      .populate("pool", "name")
+      .populate("quiz", "name")
       .select("-answer");
     if (!questions) return res.status(400).send("No Questions found.");
 
@@ -141,12 +148,12 @@ router.get("/all", async (req, res) => {
   }
 });
 
-// * Get all questions of a pool
+// * Get all questions for a Quiz
 // * Done
-router.get("/:poolId", async (req, res) => {
+router.get("/:quizId", async (req, res) => {
   try {
-    const questions = await Question.find({ pool: req.params.poolId })
-      .populate("pool", "name")
+    const questions = await Question.find({ quiz: req.params.quizId })
+      .populate("quiz", "name")
       .select("-answer");
     if (!questions) return res.status(400).send("No Questions found.");
 
