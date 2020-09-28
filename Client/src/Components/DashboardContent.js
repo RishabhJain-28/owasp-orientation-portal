@@ -38,16 +38,20 @@ const DashboardContent = ({ quizzes }) => {
                 <DashboardCard
                   iconClass="fa fa-indent"
                   heading="Fun Quiz link"
-                  title="Praesent varius mi sem"
+                  title="FUN QUIZ"
                   desc="Cras posuere consequat nisl, ut rh"
-                  link="/funquiz"
+                  link={`/funquiz/${
+                    quizzes.filter((quiz) => quiz.name === "funquiz")[0]._id
+                  }`}
                 />
                 <DashboardCard
                   iconClass="fa fa-file-text"
                   heading="Coding quiz link"
                   title="Vestibulum eget sem malesuada"
                   desc="Etiam imperdiet ullamcorpe"
-                  link="Details"
+                  link={`/codingqiuz/${
+                    quizzes.filter((quiz) => quiz.name === "codingquiz")[0]._id
+                  }`}
                 />
               </div>
             </div>
