@@ -1,19 +1,35 @@
-import React from 'react';
-import { Form } from 'react-bootstrap';
-import './question.css';
+import React from "react";
+import { Form } from "react-bootstrap";
+import "./question.css";
 
-const Question = () => {
-    return ( 
-        <div className="question">
-            <h6 className="mt-2 mb-2">Q1. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</h6>
-            <Form>
-                <Form.Check type="radio" label="Option 1" />
-                <Form.Check type="radio" label="Option 1" />
-                <Form.Check type="radio" label="Option 1" />
-                <Form.Check type="radio" label="Option 1" />
-            </Form>
-        </div>
-     );
-}
- 
+const Question = ({ question: { questionStatement, options } }) => {
+  function optionSelected(e) {
+    console.log(e.target.value);
+  }
+  return (
+    <div>
+      <h6 className="mt-2 mb-2">{questionStatement}</h6>
+      <Form>
+        <Form.Group>
+          {options &&
+            options.map((option) => (
+              <Form.Check
+                type="radio"
+                key={option}
+                label={option}
+                id={option}
+                name="options"
+                value={option}
+                onChange={(e) => optionSelected(e)}
+              /> //! fix radioo buutons
+            ))}
+          {/* <Form.Check type="radio" label="Option 2" />
+        <Form.Check type="radio" label="Option 3" />
+    <Form.Check type="radio" label="Option 4" /> */}
+        </Form.Group>
+      </Form>
+    </div>
+  );
+};
+
 export default Question;

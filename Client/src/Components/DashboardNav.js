@@ -81,6 +81,7 @@ const DashboardNav = ({ user: { username, profilePicLink }, location }) => {
               className="side-signout "
               role="button"
               aria-pressed="true"
+              onClick={() => localStorage.setItem("user", "")}
             >
               <i className="fa fa-power-off"></i>
               <span>SIGN OUT</span>

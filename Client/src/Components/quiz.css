@@ -1,43 +1,45 @@
 .quiz_body {
-    background-color:#333;
-    min-height: 100vh;
-    padding-bottom: 20px;
+  background-color: #333;
+  min-height: 100vh;
+  padding-bottom: 20px;
 }
-
+.auto_submit_span {
+  color: #eb5757;
+}
 .quiz_heading {
-    color:#eb5757;
-    font-size: 90px;
-    font-weight: bolder;
+  color: #eb5757;
+  font-size: 90px;
+  font-weight: bolder;
 }
 
 .quiz_heading span {
-    color: #3bc0d2;
+  color: #3bc0d2;
 }
 
 .btn {
-    font-weight: bold;
-    font-size: 17px;
-    color: white;
+  font-weight: bold;
+  font-size: 17px;
+  color: white;
 }
 
 .blue_btn {
-    background-color: #3bc0d2;
+  background-color: #3bc0d2;
 }
 
 .pink_btn {
-    background-color: #eb5757;
+  background-color: #eb5757;
 }
 
 .blue_btn:hover {
-    background-color: white;
-    color:#3bc0d2;
+  background-color: white;
+  color: #3bc0d2;
 }
 
 .pink_btn:hover {
-    background-color: white;
-    color: #eb5757;
+  background-color: white;
+  color: #eb5757;
 }
 
 .progress-bar {
-    background-color: #eb5757;
+  background-color: #eb5757;
 }
