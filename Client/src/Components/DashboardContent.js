@@ -40,18 +40,29 @@ const DashboardContent = ({ quizzes }) => {
                   heading="Fun Quiz link"
                   title="FUN QUIZ"
                   desc="Cras posuere consequat nisl, ut rh"
-                  link={`/funquiz/${
-                    quizzes.filter((quiz) => quiz.name === "funquiz")[0]._id
-                  }`}
+                  link={
+                    quizzes.length
+                      ? `/funquiz/${
+                          quizzes.filter((quiz) => quiz.name === "funquiz")[0]
+                            ._id
+                        }`
+                      : "/dashboard"
+                  }
                 />
                 <DashboardCard
                   iconClass="fa fa-file-text"
                   heading="Coding quiz link"
                   title="Vestibulum eget sem malesuada"
                   desc="Etiam imperdiet ullamcorpe"
-                  link={`/codingqiuz/${
-                    quizzes.filter((quiz) => quiz.name === "codingquiz")[0]._id
-                  }`}
+                  // link={
+                  //   quizzes.length
+                  //     ? `/codingquiz/${
+                  //         quizzes.filter(
+                  //           (quiz) => quiz.name === "codingquiz"
+                  //         )[0]._id
+                  //       }`
+                  //     : "/dashboard"
+                  // }
                 />
               </div>
             </div>

@@ -7,47 +7,33 @@ import "../Components/quiz.css";
 
 import FunQuiz from "./FunQuiz";
 
-const FunQuizStartPage = () => {
+const FunQuizStartPage = ({ match }) => {
   const [start, setStart] = useState(false);
   const [user, setUser] = useState({});
   const submit = useState(false);
-  const [questions, setQuestions] = useState([
-    {
-      questionStatement: "STATMENT 1",
-      options: ["option 1-1", "option 1-2", "option 1-3", "option 1-4"],
-    },
-    {
-      questionStatement: "STATMENT 2",
-      options: ["option 2-1", "option 2-2", "option 2-3", "option 2-4"],
-    },
-    {
-      questionStatement: "STATMENT 3",
-      options: ["option 2-1", "option 2-2", "option 2-3", "option 2-4"],
-    },
-    {
-      questionStatement: "STATMENT 4",
-      options: ["option 2-1", "option 2-2", "option 2-3", "option 2-4"],
-    },
-    {
-      questionStatement: "STATMENT 5",
-      options: ["option 2-1", "option 2-2", "option 2-3", "option 2-4"],
-    },
-    {
-      questionStatement: "STATMENT 6",
-      options: ["option 2-1", "option 2-2", "option 2-3", "option 2-4"],
-    },
-  ]);
+  const [questions, setQuestions] = useState([]);
+  const [redirect, setRedirect] = useState(false);
   useEffect(() => {
-    // async function  getQuestions() {
-    //     try{
-    //         const {data} = await axios.get('')//!add route
-    //         console.log(data)
-    //         setQuestions(data)
-    //     } catch(err){
-    //         setQuestions([])
-    //     }
-    // }
-    // getQuestions();
+    async function getQuestions() {
+      try {
+        const local = JSON.parse(localStorage.getItem("questions"));
+        // alert(local);
+        if (local && local.length) {
+          return setQuestions(local);
+        }
+        const { data } = await axios.get(`/quiz/start/${match.params.id}`); //!add route
+        console.log("questions", data);
+
+        localStorage.setItem("questions", JSON.stringify(data.questionIds));
+        setQuestions(data.questionIds);
+      } catch (err) {
+        alert(err);
+        // localStorage.setItem("questions", JSON.stringify([]));
+        // setQuestions([]);
+        setRedirect(true);
+      }
+    }
+    getQuestions();
   }, []);
 
   useEffect(() => {
@@ -68,10 +54,10 @@ const FunQuizStartPage = () => {
   //! check if quiz start from backend
   //! load questions from
 
-  if (!user) {
-    return <Redirect to="/" />;
-  }
-  if (!questions.length) return <Redirect to="/dashboard" />; //! local storage
+  // if (!user) {
+  //   return <Redirect to="/" />;
+  // }
+  if (redirect) return <Redirect to="/dashboard" />; //! local storage
   return (
     <>
       {start ? (

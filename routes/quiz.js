@@ -78,6 +78,7 @@ router.get("/all", isAuthenticated, async (req, res) => {
 
 // * Start quiz ( Participants )
 router.get("/start/:id", async (req, res) => {
+  console.log(req.user._id);
   try {
     let quiz = await Quiz.findById(req.params.id).exec();
     if (!quiz || !quiz.active || quiz.completed)

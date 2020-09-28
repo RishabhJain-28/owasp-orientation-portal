@@ -14,6 +14,7 @@ const QuestionBank = require("../models/questionBank");
 const Question = require("../models/questions");
 const Quiz = require("../models/quiz");
 const Participant = require("../models/participants");
+const isAuthenticated = require("../middleware/isAuthenticated");
 
 // * API Endpoints -->
 const router = express.Router();
@@ -36,7 +37,7 @@ router.post("/generate", async (req, res) => {
     const existingQuestionBank = await QuestionBank.findOne({
       quiz: value.quizId,
       participant: value.userId,
-    });
+    }).populate("questionIds", "-answer");
     if (existingQuestionBank) return res.status(200).send(existingQuestionBank);
 
     let questions = [];
@@ -149,7 +150,8 @@ req.body ==> {
   }
 }
 */
-router.post("/submit", [activeQuiz], async (req, res) => {
+router.post("/submit", [isAuthenticated, activeQuiz], async (req, res) => {
+  // console.log(r)
   try {
     let questionBank = await QuestionBank.findById(
       req.session.questionBank
@@ -205,7 +207,9 @@ router.post("/submit", [activeQuiz], async (req, res) => {
     questionBank.submitted = true;
     questionBank = await questionBank.save();
 
-    res.status(200).send("Quiz Response submitted.");
+    res
+      .status(200)
+      .json({ msg: "Quiz Response submitted.", score: questionBank.score });
   } catch (error) {
     console.log("Error occured here \n", error);
     res.status(400).send("Server denied request.");

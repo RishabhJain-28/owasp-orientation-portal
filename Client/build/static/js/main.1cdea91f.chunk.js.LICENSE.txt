@@ -1,0 +1,11 @@
+//! check if quiz start from backend
+
+//! load questions from
+
+//! local storage
+
+//!add route
+
+//!q_index
+
+//!time

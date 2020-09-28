@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const passport = require("passport");
 const cookieSession = require("cookie-session");
+const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const connectFlash = require("connect-flash");
 const path = require("path");
@@ -20,9 +21,10 @@ const question = require("./routes/questions");
 const questionBank = require("./routes/questionBank");
 
 // * Middleware
-app.use(cors());
+app.use(cookieParser());
+app.use(cors({ origin: `${process.env.CLIENT_URL}`, credentials: true }));
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", process.env.CLIENT_URL);
+  res.header("Access-Control-Allow-Origin", `${process.env.CLIENT_URL}`);
   res.header("Access-Control-Allow-Credentials", true);
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
   res.header(

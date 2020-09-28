@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Question from "../Components/QuestionCard";
 import { ButtonGroup, ProgressBar } from "react-bootstrap";
-
+import axios from "../util/axios";
 import "../Components/quiz.css";
 
 const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
@@ -9,6 +9,7 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
   const [time, setTime] = useState(0);
   const [timerID, setTimerID] = useState("");
   const [q_index, setQ_index] = useState(0);
+  const [answers, setAnswers] = useState({});
 
   useEffect(() => {
     let time = localStorage.getItem("session#hash%20t"); //!time
@@ -61,10 +62,16 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
     clearTimeout(timerID);
   }, [time]);
 
-  function submitQuiz() {
+  async function submitQuiz() {
     console.log("QUIZ SUBMIITED");
+
     alert("QUIZ SUBMIITED");
-    //!submit quiz
+
+    const { data } = await axios.post("/questionBank/submit", {
+      responses: answers,
+    });
+    console.log(data);
+
     localStorage.setItem("session#hash%20t", String.fromCharCode(0));
     localStorage.setItem("session_$index%", String.fromCharCode(6 * 2 + 6));
     setSubmit(true);
@@ -77,13 +84,18 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
     setTime(0);
     setQ_index(i);
   }
-
+  function markAns(e, id) {
+    const ans = answers;
+    ans[id] = e.target.value;
+    console.log(ans);
+    setAnswers(ans);
+  }
   return (
     <div className="quiz_body">
       <div className="container">
         <div className="row justify-content-center">
           <img
-            src="IMAGES/owasp_logo-13.png"
+            src="/IMAGES/owasp_logo-13.png"
             style={{ height: "60px" }}
             className="mt-3  mb-3"
           />
@@ -96,7 +108,7 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
         {!submit ? (
           <>
             <div className="mb-2 question">
-              <Question question={questions[q_index]} />
+              <Question markAns={markAns} question={questions[q_index]} />
               {q_index === questions.length - 1 && maxTime - time < 5 && (
                 <p>
                   Auto submitting in{" "}
@@ -116,7 +128,12 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
               <div className="row justify-content-center">
                 <ButtonGroup className="m-2 ml-4 mr-4">
                   {q_index === questions.length - 1 ? (
-                    <button className="btn pink_btn">Submit</button> //! add submit
+                    <button
+                      className="btn pink_btn"
+                      onClick={() => submitQuiz()}
+                    >
+                      Submit
+                    </button> //! add submit
                   ) : (
                     <button className="btn blue_btn" onClick={nextQuestion}>
                       Next

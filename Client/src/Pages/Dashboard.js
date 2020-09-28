@@ -35,7 +35,8 @@ const Dashboard = ({ location }) => {
 
     async function getQuizes() {
       try {
-        const { data } = await axios.get("/");
+        const { data } = await axios.get("/quiz/all");
+        console.log(data);
         setQuizzes(data);
         // localStorage.setItem("user", JSON.stringify(data));
       } catch (error) {
@@ -67,8 +68,11 @@ const Dashboard = ({ location }) => {
         <Route
           exact
           path="/dashboard"
-          quizzes={quizzes}
-          component={DashboardContent}
+          render={(props) => {
+            return (
+              <DashboardContent {...props} quizzes={quizzes ? quizzes : []} />
+            );
+          }}
         />
         <Redirect to="/dashboard" />
       </Switch>

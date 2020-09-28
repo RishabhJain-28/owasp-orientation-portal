@@ -47,9 +47,9 @@ function App() {
                 );
               return <FunQuizStartPage {...props} />;
             }}
-            path="/funquiz"
+            path="/funquiz/:id"
           />
-          <Route exact path="/codingquiz" component={CodingQuiz} />
+          <Route path="/codingquiz" component={CodingQuiz} />
           <Route exact path="/" component={CompleteRegistration} />
 
           {/* <Redirect to="/" /> */}
