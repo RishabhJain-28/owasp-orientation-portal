@@ -5,12 +5,11 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Dashboard from "./Pages/Dashboard";
 import CompleteRegistration from "./Pages/CompleteRegistration";
 // import ContactUs from "./Pages/ContactUs";
-import FunQuiz from "./Pages/FunQuiz";
+import FunQuizStartPage from "./Pages/FunQuizStartPage";
 import CodingQuiz from "./Pages/CodingQuiz";
 import ErrorPage from "./Pages/ErrorPage";
 
 function App() {
-  const [count, setCount] = useState(0);
   useEffect(() => {
     AOS.init();
   }, []);
@@ -21,9 +20,16 @@ function App() {
           <Route path="/error" component={ErrorPage} />
           <Route path="/dashboard" component={Dashboard} />
           {/* <Route exact path="/contactus" component={ContactUs} /> */}
+          {/* <Route path="/funquiz" component={FunQuizStartPage} /> */}
           <Route
             exact
             render={(props) => {
+              let start = localStorage.getItem("session*&start");
+
+              if (!start) {
+                start = String.fromCharCode(0);
+              }
+
               let time = localStorage.getItem("session#hash%20t");
               if (!time) {
                 localStorage.setItem(
@@ -33,12 +39,13 @@ function App() {
                 time = String.fromCharCode(0);
               }
               const decodedTime = time.charCodeAt(0);
+              console.log(decodedTime);
               if (PerformanceNavigation.TYPE_RELOAD === 1)
                 localStorage.setItem(
                   "session#hash%20t",
                   String.fromCharCode(decodedTime + 1)
                 );
-              return <FunQuiz {...props} />;
+              return <FunQuizStartPage {...props} />;
             }}
             path="/funquiz"
           />

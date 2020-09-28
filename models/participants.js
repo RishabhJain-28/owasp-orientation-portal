@@ -7,12 +7,16 @@ const participantSchema = new mongoose.Schema({
     maxlength: 250,
     required: true,
   },
-  username: {
+  year: {
     type: String,
-    // minlength: 5,
-    maxlength: 250,
-    required: true,
+    maxlength: 15,
   },
+  // username: {
+  //   type: String,
+  //   // minlength: 5,
+  //   maxlength: 250,
+  //   // required: true,
+  // },
   email: {
     type: String,
     unique: true,

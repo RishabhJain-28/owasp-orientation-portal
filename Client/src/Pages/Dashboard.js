@@ -32,7 +32,7 @@ const Dashboard = ({ location }) => {
       }
     }
 
-    if (!user.username) getProfile();
+    if (!user.name) getProfile();
   }, []);
 
   if (redirect) return <Redirect to="/" />;
@@ -54,6 +54,7 @@ const Dashboard = ({ location }) => {
         <Route exact path="/dashboard/leaderboard" component={Leaderboard} />
         <Route exact path="/dashboard/aboutus" component={DashboardAboutus} />
         <Route exact path="/dashboard/" component={DashboardContent} />
+        <Redirect to="/dashboard" />
       </Switch>
     </>
   );

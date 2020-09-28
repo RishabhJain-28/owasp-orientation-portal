@@ -4,7 +4,7 @@ import Input from "./common/Input";
 
 const RegistrationForm = ({ buttonText, ...rest }) => {
   const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
+  const [year, setYear] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [branch, setBranch] = useState("");
   const [rollNumber, setRollNumber] = useState("");
@@ -27,13 +27,18 @@ const RegistrationForm = ({ buttonText, ...rest }) => {
       />
       <Input
         type="text"
-        placeholder="Enter username"
-        label="USERNAME:"
-        value={username}
-        name="username"
+        placeholder="Enter year"
+        label="YEAR:"
+        value={year}
+        name="year"
         required
-        onChange={(e) => setUsername(e.target.value)}
+        list="years"
+        onChange={(e) => setYear(e.target.value)}
       />
+      <datalist id="years">
+        <option value="First year" />
+        <option value="Second year" />
+      </datalist>
       <Input
         type="number"
         placeholder="Enter phone number"
@@ -50,8 +55,27 @@ const RegistrationForm = ({ buttonText, ...rest }) => {
         value={branch}
         name="branch"
         required
+        list="branches"
+        id="branch"
         onChange={(e) => setBranch(e.target.value)}
       />
+      <datalist id="branches">
+        <option value="CHEMICAL ENGINEERING – CHE" />
+        <option value="CIVIL ENGINEERING - CIE" />
+        <option value="COMPUTER ENGINEERING - COE" />
+        <option value="COMPUTER SCIENCE AND ENGINEERING(PATIALA CAMPUS) – COPC" />
+        <option value="ELECTRICAL ENGINEERING - ELE" />
+        <option value="ELECTRONICS AND COMMUNICATION ENGINEERING - ECE" />
+        <option value="ELECTRONICS AND COMPUTER ENGINEERING - ENC" />
+        <option value="ELECTRONICS (INSTRUMENTATION AND CONTROL) ENGINEERING - EIC" />
+        <option value="MECHANICAL ENGINEERING – MEE" />
+        <option value="MECHANICAL ENGINEERING(PRODUCTION) - MPE" />
+        <option value="MECHATRONICS - MEC" />
+        <option value="ELECTRICAL AND COMPUTER ENGINEERING - MEC" />
+        //!CODE
+        <option value="ELECTRICAL AND COMPUTER ENGINEERING - MEC" />
+        //!BIOTECH
+      </datalist>
       <Input
         type="number"
         placeholder="Enter roll number"
