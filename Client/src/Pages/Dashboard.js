@@ -23,15 +23,16 @@ const Dashboard = ({ location }) => {
   useEffect(() => {
     async function getProfile() {
       try {
-        const res = await axios.get("/participants/profile");
+        const { data } = await axios.get("/participants/profile");
 
-        setUser(res.data);
+        setUser(data);
+        localStorage.setItem("user", JSON.stringify(data));
       } catch (error) {
         setRedirect(true);
       }
     }
 
-    getProfile();
+    if (!user.username) getProfile();
   }, []);
 
   if (redirect) return <Redirect to="/" />;
