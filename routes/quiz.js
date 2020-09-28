@@ -64,6 +64,18 @@ router.put("/edit/:id", async (req, res) => {
   }
 });
 
+// * Get all quizes
+router.get("/all", isAuthenticated, async (req, res) => {
+  try {
+    const quizes = await Quiz.find({ completed: false }).exec();
+
+    res.send(quizes);
+  } catch (error) {
+    console.log("Error occured here \n", error);
+    res.status(400).send("Server Denied Request.");
+  }
+});
+
 // * Start quiz ( Participants )
 router.get("/start/:id", async (req, res) => {
   try {
