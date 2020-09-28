@@ -26,17 +26,32 @@ router.post("/new", async (req, res) => {
     const quiz = await Quiz.findById(value.quiz).exec();
     if (!quiz) return res.status(400).send("Quiz does not exist.");
 
-    const reqBody = omit(value, ["answer", "quiz"]);
+    const reqBody = omit(value, ["answer", "quiz", "subs"]);
     const answer = CryptoJS.Rabbit.encrypt(
       value.answer,
       process.env.CRYPTO_KEY
     ).toString();
 
-    const newQuestion = await Question.create({
-      ...reqBody,
-      answer,
-      quiz,
-    });
+    let newQuestion;
+
+    if (quiz.haveSubs) {
+      if (value.sub && quiz.subs.map((i) => i.name).includes(value.sub)) {
+        newQuestion = await Question.create({
+          ...reqBody,
+          answer,
+          quiz: quiz._id,
+          sub: value.sub,
+        });
+      } else {
+        return res.status(400).send("Invalid Sub.");
+      }
+    } else {
+      newQuestion = await Question.create({
+        ...reqBody,
+        answer,
+        quiz: quiz._id,
+      });
+    }
     res.status(200).send(newQuestion);
   } catch (error) {
     console.log("Error occured here -> \n", error);
@@ -54,6 +69,7 @@ router.put("/edit/:id", async (req, res) => {
     const quiz = await Quiz.findById(value.quiz).exec();
     if (!quiz) return res.status(400).send("Quiz does not exist.");
 
+    // ! TODO
     const editedQuestion = await Question.findByIdAndUpdate(
       req.params.id,
       value,

@@ -15,6 +15,24 @@ const quizSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  noOfQuestions: {
+    type: Number,
+    required: true,
+  },
+  duration: {
+    type: Number, //  in mins
+    required: true,
+  },
+  haveSubs: {
+    type: Boolean,
+    required: true,
+  },
+  subs: [
+    {
+      name: { type: String, required: true },
+      number: { type: Number, required: true },
+    },
+  ],
   active: {
     type: Boolean,
     default: false,
