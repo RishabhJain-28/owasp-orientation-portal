@@ -13,6 +13,7 @@ const CodingQuizStartPage = ({ match }) => {
   const submit = useState(false);
   const [questions, setQuestions] = useState([]);
   const [redirect, setRedirect] = useState(false);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     // localStorage.setItem("session#hash%20t", hash(0));
     async function getQuestions() {
@@ -27,6 +28,7 @@ const CodingQuizStartPage = ({ match }) => {
 
         localStorage.setItem("questions2", JSON.stringify(data.questionIds));
         setQuestions(data.questionIds);
+        setLoading(false);
       } catch (err) {
         alert("CANT FETCH QUESTIONS", err);
         // localStorage.setItem("questions", JSON.stringify([]));
@@ -90,6 +92,7 @@ const CodingQuizStartPage = ({ match }) => {
                   <ButtonGroup className="m-2 ml-4 mr-4">
                     <button
                       className="btn blue_btn"
+                      disabled={loading}
                       onClick={() => startQuiz()}
                     >
                       Start

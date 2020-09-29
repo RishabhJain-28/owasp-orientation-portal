@@ -41,8 +41,6 @@ router.post("/generate", async (req, res) => {
       participant: value.userId,
     }).populate("questionIds", "-answer");
     if (existingQuestionBank) {
-      console.log("existing", existingQuestion);
-
       return res.status(200).send(existingQuestionBank);
     }
 

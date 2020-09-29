@@ -6,12 +6,13 @@ import { Link } from "react-router-dom";
 import "../Components/quiz.css";
 import { hash, dehash } from "../util/encrypt";
 const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
-  const [maxTime] = useState(15);
+  const [maxTime] = useState(10);
   const [time, setTime] = useState();
   const [timerID, setTimerID] = useState("");
   const [q_index, setQ_index] = useState(0);
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
   // function hash(i) {
   //   return i + 100;
   //   // return String.fromCharCode(i + 100);
@@ -82,13 +83,16 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
 
   async function submitQuiz() {
     console.log("QUIZ SUBMIITED");
-
-    alert("QUIZ SUBMIITED");
+    if (submitted) throw new Error();
     try {
-      const { data } = await axios.post("/questionBank/submit", {
+      const { data, status } = await axios.post("/questionBank/submit", {
         responses: answers,
       });
       console.log(data);
+      if (status == 200) {
+        setSubmitted(true);
+        alert("QUIZ SUBMIITED");
+      }
       localStorage.setItem("score", data.score);
       setScore(data.score);
     } catch (err) {
