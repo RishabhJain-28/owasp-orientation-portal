@@ -21,7 +21,7 @@ const FunQuizStartPage = ({ match }) => {
   const [questions, setQuestions] = useState([]);
   const [redirect, setRedirect] = useState(false);
   useEffect(() => {
-    localStorage.setItem("session#hash%20t", hash(0));
+    // localStorage.setItem("session#hash%20t", hash(0));
     async function getQuestions() {
       try {
         const local = JSON.parse(localStorage.getItem("questions"));
