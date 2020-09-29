@@ -30,7 +30,7 @@ const FunQuizStartPage = ({ match }) => {
         setQuestions(data.questionIds);
         setLoading(false);
       } catch (err) {
-        alert("CANT FETCH QUESTIONS", err);
+        alert("Quiz has not been started yet", err);
         // localStorage.setItem("questions", JSON.stringify([]));
         // setQuestions([]);
         setRedirect(true);

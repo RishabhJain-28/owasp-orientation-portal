@@ -43,7 +43,7 @@ const CodingQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
     if (decodedTime === -1) {
       // console.log("-1", decodedTime);
       // setQ_index(6);
-      alert("sdsadasdad");
+      // alert("sdsadasdad");
       setSubmit(true);
       return;
     }
