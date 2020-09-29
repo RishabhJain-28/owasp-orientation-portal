@@ -22,6 +22,7 @@ const router = express.Router();
 // * Generate a question bank
 router.post("/generate", async (req, res) => {
   try {
+    console.log("gen");
     const schema = Joi.object({
       userId: Joi.string().trim().required(),
       quizId: Joi.string().trim().required(),
@@ -80,6 +81,7 @@ router.post("/generate", async (req, res) => {
       "-answer"
     );
 
+    console.log(final);
     res.status(200).send(final);
   } catch (error) {
     console.log("Error occured here \n", error);

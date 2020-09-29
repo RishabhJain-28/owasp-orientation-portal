@@ -36,7 +36,7 @@ const Dashboard = ({ location }) => {
     async function getQuizes() {
       try {
         const { data } = await axios.get("/quiz/all");
-        console.log(data);
+        // console.log(data);
         setQuizzes(data);
         // localStorage.setItem("user", JSON.stringify(data));
       } catch (error) {

@@ -21,9 +21,13 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
   //   // return code.charCodeAt(0) - 100;
   // }
   useEffect(() => {
+    let score = localStorage.getItem("score");
+    console.log(score);
     // console.log("questions", questions);
     let time = localStorage.getItem("session#hash%20t"); //!time
-
+    let ans = localStorage.getItem("session#ans"); //!time
+    if (ans) setAnswers(JSON.parse(ans));
+    if (score) setScore(score);
     // console.log("a", time);
     if (!time) {
       localStorage.setItem("session#hash%20t", hash(0));
@@ -34,7 +38,7 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
     // console.log("b", time);
 
     let decodedTime = dehash(time);
-    console.log("c-decoded", decodedTime);
+    // console.log("c-decoded", decodedTime);
     if (decodedTime === -1) {
       // console.log("-1", decodedTime);
       setQ_index(6);
@@ -80,15 +84,16 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
     console.log("QUIZ SUBMIITED");
 
     alert("QUIZ SUBMIITED");
-    // try {
-    //   const { data } = await axios.post("/questionBank/submit", {
-    //     responses: answers,
-    //   });
-    //   console.log(data);
-    //   setScore(data.score);
-    // } catch (err) {
-    //   alert("can not resubmit ");
-    // }
+    try {
+      const { data } = await axios.post("/questionBank/submit", {
+        responses: answers,
+      });
+      console.log(data);
+      localStorage.setItem("score", data.score);
+      setScore(data.score);
+    } catch (err) {
+      alert("can not resubmit ");
+    }
     clearTimeout(timerID);
     setTime(-1);
     // console.log("hash shoulld ve -1", hash(-1));
@@ -108,6 +113,7 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
     const ans = answers;
     ans[id] = e.target.value;
     console.log(ans);
+    localStorage.setItem("session#ans", JSON.stringify(ans));
     setAnswers(ans);
   }
   return (
