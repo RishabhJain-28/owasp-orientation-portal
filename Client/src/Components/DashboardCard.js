@@ -4,12 +4,12 @@ const DashboardCard = ({ iconClass, heading, title, desc, link }) => {
   return (
     <div className="flex-item">
       <div className="flex-item-inner">
-        <Link to={link}>
-          <div className="card-front">
-            <i className={`${iconClass} fa-3x tile-icon icon-white`}></i>
+        <div className="card-front">
+          <i className={`${iconClass} fa-3x tile-icon icon-white`}></i>
 
-            <h3>{heading}</h3>
-          </div>
+          <h3>{heading}</h3>
+        </div>
+        <Link to={link}>
           <div className="card-back bg-dark">
             {/* <p className="title">{title}</p> */}
             <p className="desc">{desc}</p>

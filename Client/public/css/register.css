@@ -568,9 +568,9 @@ ul.timer-li-phone {
 
 @media only screen and (max-width: 900px) {
   .navbar-brand .logo {
-    height: 3vw;
+    height: 7vw;
     width: auto;
-    margin-left: 0;
+    margin-left: 1rem;
   }
 }
 
@@ -582,11 +582,14 @@ ul.timer-li-phone {
   section {
     min-width: 50%;
   }
+  .logo {
+    height: 7vw;
+  }
   .contact-phone {
     margin-bottom: 4rem;
     align-items: center;
-    margin-right: 5rem;
-    margin-left: 5rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
     text-align: center;
   }
   /* .phone2-form-section {

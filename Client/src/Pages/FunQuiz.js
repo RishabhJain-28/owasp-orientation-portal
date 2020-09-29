@@ -112,7 +112,11 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
         {!submit ? (
           <>
             <div className="mb-2 question">
-              <Question markAns={markAns} question={questions[q_index]} />
+              <Question
+                num={q_index}
+                markAns={markAns}
+                question={questions[q_index]}
+              />
               {q_index === questions.length - 1 && maxTime - time < 5 && (
                 <p>
                   Auto submitting in{" "}

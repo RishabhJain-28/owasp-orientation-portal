@@ -4,7 +4,7 @@ const NavbarComponent = () => {
   return (
     <>
       <Navbar variant="dark" className="navCustom  fixed-top" expand="lg">
-        <Navbar.Brand href="/" style={{ marginLeft: "1 rem" }}>
+        <Navbar.Brand href="/" style={{ marginLeft: "1rem " }}>
           <img className="logo" alt="LOGO" src="IMAGES/owasp_logo-13.png" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
