@@ -70,7 +70,11 @@ const Dashboard = ({ location }) => {
           path="/dashboard"
           render={(props) => {
             return (
-              <DashboardContent {...props} quizzes={quizzes ? quizzes : []} />
+              <DashboardContent
+                name={user.name}
+                {...props}
+                quizzes={quizzes ? quizzes : []}
+              />
             );
           }}
         />

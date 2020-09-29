@@ -1,7 +1,14 @@
 import React from "react";
 import DashboardCard from "./DashboardCard";
 
-const DashboardContent = ({ quizzes }) => {
+const DashboardContent = ({ quizzes, name }) => {
+  function getLink(routeName) {
+    if (quizzes.length) {
+      const quiz = quizzes.filter((quiz) => quiz.name === routeName)[0];
+      if (quiz) return `/${routeName}/${quiz._id}`;
+    }
+    return "/dashboard";
+  }
   return (
     <>
       <div
@@ -19,11 +26,11 @@ const DashboardContent = ({ quizzes }) => {
           <div className="container">
             <div className="jumbotron">
               <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Repellat, porro? Nisi, sunt soluta? Expedita esse facilis
-                temporibus recusandae distinctio repudiandae reprehenderit
-                dolorem praesentium error autem, ratione accusamus quos ad
-                aspernatur!
+                Hey {name},Thank you for registering! We welcome you to the
+                Owasp student chapter portal! Orientation will commence at
+                5:30pm on 29th September,2020. Find the Youtube link down below.
+                Stand a chance to win a direct spot in personal interviews by
+                taking part in the quiz. Stay tuned!
               </p>
             </div>
             <div className="row">
@@ -31,38 +38,23 @@ const DashboardContent = ({ quizzes }) => {
                 <DashboardCard
                   iconClass="fa fa-video-camera"
                   heading="Orientation link"
-                  title="Lorem ipsum dolor sit amet"
-                  desc="Pellentesque magna nunc"
+                  title="Orientation on Youtube"
+                  desc="Youtube live will be streamed at 5:30pm. Please be on time."
                   link="Details"
                 />
                 <DashboardCard
                   iconClass="fa fa-indent"
                   heading="Fun Quiz link"
-                  title="FUN QUIZ"
-                  desc="Cras posuere consequat nisl, ut rh"
-                  link={
-                    quizzes.length
-                      ? `/funquiz/${
-                          quizzes.filter((quiz) => quiz.name === "funquiz")[0]
-                            ._id
-                        }`
-                      : "/dashboard"
-                  }
+                  title="Fun Quiz"
+                  desc="Fun quiz will be soon. You have 15 seconds for each question. All the best!"
+                  link={getLink("funquiz")}
                 />
                 <DashboardCard
                   iconClass="fa fa-file-text"
                   heading="Coding quiz link"
-                  title="Vestibulum eget sem malesuada"
-                  desc="Etiam imperdiet ullamcorpe"
-                  // link={
-                  //   quizzes.length
-                  //     ? `/codingquiz/${
-                  //         quizzes.filter(
-                  //           (quiz) => quiz.name === "codingquiz"
-                  //         )[0]._id
-                  //       }`
-                  //     : "/dashboard"
-                  // }
+                  title="Coding quiz"
+                  desc="Coding quiz will be live for only 15 minutes. All the best! "
+                  link={getLink("funquiz2")}
                 />
               </div>
             </div>

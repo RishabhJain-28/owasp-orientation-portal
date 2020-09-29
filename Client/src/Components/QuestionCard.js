@@ -2,14 +2,16 @@ import React from "react";
 import { Form } from "react-bootstrap";
 import "./question.css";
 
-const Question = ({ question: { _id, statement, options }, markAns }) => {
+const Question = ({ num, question: { _id, statement, options }, markAns }) => {
   // function optionSelected(e) {
   //   console.log(e.target.value);
   // }
 
   return (
     <div>
-      <h6 className="mt-2 mb-2">{statement}</h6>
+      <h6 className="mt-2 mb-2">
+        <span className="auto_submit_span">Q{num}.</span> {statement}
+      </h6>
       <Form>
         <Form.Group>
           {/* <Form.Control as="select"> */}

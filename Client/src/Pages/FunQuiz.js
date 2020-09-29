@@ -10,6 +10,7 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
   const [timerID, setTimerID] = useState("");
   const [q_index, setQ_index] = useState(0);
   const [answers, setAnswers] = useState({});
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     let time = localStorage.getItem("session#hash%20t"); //!time
@@ -66,12 +67,15 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
     console.log("QUIZ SUBMIITED");
 
     alert("QUIZ SUBMIITED");
-
-    const { data } = await axios.post("/questionBank/submit", {
-      responses: answers,
-    });
-    console.log(data);
-
+    try {
+      const { data } = await axios.post("/questionBank/submit", {
+        responses: answers,
+      });
+      console.log(data);
+      setScore(data.score);
+    } catch (err) {
+      alert("can not resubmit ");
+    }
     localStorage.setItem("session#hash%20t", String.fromCharCode(0));
     localStorage.setItem("session_$index%", String.fromCharCode(6 * 2 + 6));
     setSubmit(true);
@@ -144,7 +148,7 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
             </div>
           </>
         ) : (
-          <AfterSubmit user={user} />
+          <AfterSubmit user={user} score={score} />
         )}
       </div>
     </div>
@@ -153,6 +157,11 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
 
 export default FunQuiz;
 
-function AfterSubmit({ user }) {
-  return <div className="question">Nicely done {user.username}</div>;
+function AfterSubmit({ user, score }) {
+  return (
+    <div className="question">
+      Nicely done {user.username}! You got{" "}
+      <span className="auto_submit_span">{score}</span> marks!!!
+    </div>
+  );
 }

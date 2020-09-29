@@ -2,8 +2,6 @@
 
 //! load questions from
 
-//! local storage
-
 //!add route
 
 //!q_index
