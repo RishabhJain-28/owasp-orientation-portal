@@ -69,7 +69,7 @@ const DashboardContent = ({ quizzes, name }) => {
                   iconClass="fa fa-indent"
                   heading="Fun Quiz link"
                   title="Fun Quiz"
-                  desc="Fun quiz will be soon. You have 15 seconds for each question. All the best!"
+                  desc="Fun quiz will be live soon. You have 15 seconds for each question. All the best!"
                   link={getLink("funquiz")}
                 />
                 <DashboardCard

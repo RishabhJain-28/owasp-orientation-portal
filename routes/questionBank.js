@@ -4,8 +4,8 @@ const express = require("express");
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
 const CryptoJS = require("crypto-js");
-const { findIndex, shuffle } = require("lodash");
-
+const { findIndex } = require("lodash");
+const shuffle = require("./func");
 // * Middleware
 const activeQuiz = require("../middleware/quiz");
 
@@ -54,7 +54,7 @@ router.post("/generate", async (req, res) => {
         }).exec();
         console.log("X ", x);
         x = x.map((i) => i._id);
-        x = shuffle(x);
+        shuffle(x);
         x = x.slice(0, sub.number);
         console.log(x);
         questions = [...questions, ...x];
@@ -62,7 +62,7 @@ router.post("/generate", async (req, res) => {
     } else {
       let x = await Question.find({ quiz: value.quizId }).exec();
       x = x.map((i) => i._id);
-      x = shuffle(x);
+      shuffle(x);
       x = x.slice(0, existingQuiz.noOfQuestions);
       console.log(x);
       questions = [...questions, ...x];

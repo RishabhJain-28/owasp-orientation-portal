@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "../Components/quiz.css";
 import { hash, dehash } from "../util/encrypt";
 const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
-  const [maxTime] = useState(10);
+  const [maxTime] = useState(15);
   const [time, setTime] = useState();
   const [timerID, setTimerID] = useState("");
   const [q_index, setQ_index] = useState(0);
