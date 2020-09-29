@@ -40,7 +40,7 @@ const DashboardContent = ({ quizzes, name }) => {
                   heading="Orientation link"
                   title="Orientation on Youtube"
                   desc="Youtube live will be streamed at 5:30pm. Please be on time."
-                  link="Details"
+                  link="http://bit.ly/OWASPorientation"
                 />
                 <DashboardCard
                   iconClass="fa fa-indent"
