@@ -47,9 +47,24 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
       localStorage.setItem("session#hash%20t", hash(-1));
       return submitQuiz();
     }
+<<<<<<< HEAD
     setTime(decodedTime);
     // console.log("e-state-time", decodedTime);
     setQ_index(Math.floor(decodedTime / maxTime));
+=======
+    setTime(time ? decodedTime : 0);
+    setQ_index(index ? decodedIndex : 0);
+
+    if (localStorage.getItem("questions")) {
+      const temp = {};
+      const local = JSON.parse(localStorage.getItem("questions"));
+      Object.keys(local).forEach((x) => {
+        temp[x] = local[x].response;
+      });
+
+      setAnswers(temp);
+    }
+>>>>>>> origin/master
   }, []);
 
   useEffect(() => {
@@ -107,6 +122,9 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
   function markAns(e, id) {
     const ans = answers;
     ans[id] = e.target.value;
+    const update = { ...JSON.parse(localStorage.getItem("questions")) };
+    update[id].response = e.target.value;
+    localStorage.setItem("questions", JSON.stringify(update));
     console.log(ans);
     setAnswers(ans);
   }

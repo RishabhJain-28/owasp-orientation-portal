@@ -24,18 +24,34 @@ const FunQuizStartPage = ({ match }) => {
     // localStorage.setItem("session#hash%20t", hash(0));
     async function getQuestions() {
       try {
-        const local = JSON.parse(localStorage.getItem("questions"));
-        // alert(local);
-        if (local && local.length) {
-          return setQuestions(local);
+        if (localStorage.getItem("questions")) {
+          const local = JSON.parse(localStorage.getItem("questions"));
+          const arr = Object.values(local).map((t) => {
+            return t.question;
+          });
+          // alert(local);
+          if (local && arr.length) {
+            return setQuestions(arr);
+          }
         }
         const { data } = await axios.get(`/quiz/start/${match.params.id}`); //!add route
         console.log("questions", data);
 
-        localStorage.setItem("questions", JSON.stringify(data.questionIds));
+        // localStorage.setItem("questions", JSON.stringify(data.questionIds));
+
+        const temp = {};
+        data.questionIds.forEach((x) => {
+          temp[x._id] = {
+            question: x,
+            response: "",
+          };
+        });
+        localStorage.setItem("questions", JSON.stringify(temp));
+
         setQuestions(data.questionIds);
       } catch (err) {
         alert("CANT FETCH QUESTIONS", err);
+        console.log(err);
         // localStorage.setItem("questions", JSON.stringify([]));
         // setQuestions([]);
         setRedirect(true);
