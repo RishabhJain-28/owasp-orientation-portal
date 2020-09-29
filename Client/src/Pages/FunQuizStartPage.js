@@ -27,7 +27,7 @@ const FunQuizStartPage = ({ match }) => {
         localStorage.setItem("questions", JSON.stringify(data.questionIds));
         setQuestions(data.questionIds);
       } catch (err) {
-        alert(err);
+        alert("CANT FETCH QUESTIONS", err);
         // localStorage.setItem("questions", JSON.stringify([]));
         // setQuestions([]);
         setRedirect(true);
