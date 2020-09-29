@@ -11,7 +11,6 @@ const CodingQuiz = ({ questions, user, submit: [submit, setSubmit] }) => {
   // const [q_index, setQ_index] = useState(0);
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(0);
-
   useEffect(() => {
     // console.log(questions);
     // alert(JSON.stringify(questions));
