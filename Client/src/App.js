@@ -54,22 +54,34 @@ function App() {
           <Route
             exact
             render={(props) => {
-              let time = localStorage.getItem("session#hash%20tc");
-              if (!time) {
-                localStorage.setItem("session#hash%20tc", hash(0));
-                time = hash(0);
+              let time = localStorage.getItem("session#hash%20t2");
+              // if (!time) {
+              //   localStorage.setItem("session#hash%20t", hash(0));
+              //   time = hash(0);
+              // }
+              if (time) {
+                const decodedTime = dehash(time);
+                // localStorage.setItem("session#hash%20t", hash(0));
+                // time = hash(0);
+
+                console.log("before route", decodedTime);
+                console.log("performance", PerformanceNavigation.TYPE_RELOAD);
+                if (
+                  decodedTime !== -1 &&
+                  PerformanceNavigation.TYPE_RELOAD === 1
+                ) {
+                  console.log("in condition", decodedTime);
+                  localStorage.setItem(
+                    "session#hash%20t2",
+                    hash(decodedTime + 1)
+                  );
+                }
               }
-              const decodedTime = dehash(time);
-              console.log(decodedTime);
-              if (PerformanceNavigation.TYPE_RELOAD === 1)
-                localStorage.setItem(
-                  "session#hash%20tc",
-                  hash(decodedTime + 1)
-                );
               return <CodingQuizStartPage {...props} />;
             }}
-            path="/funquiz2/:id"
+            path="/codingquiz/:id"
           />
+
           {/* <Route path="/funquiz2" component={CodingQuiz} /> */}
           <Route exact path="/" component={CompleteRegistration} />
 

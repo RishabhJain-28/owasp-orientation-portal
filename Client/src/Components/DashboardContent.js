@@ -54,7 +54,7 @@ const DashboardContent = ({ quizzes, name }) => {
                   heading="Coding quiz link"
                   title="Coding quiz"
                   desc="Coding quiz will be live for only 15 minutes. All the best! "
-                  link={getLink("funquiz2")}
+                  link={getLink("codingquiz")}
                 />
               </div>
             </div>

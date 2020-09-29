@@ -4,40 +4,31 @@ import axios from "../util/axios";
 import { Redirect } from "react-router-dom";
 
 import "../Components/quiz.css";
-
 import CodingQuiz from "./CodingQuiz";
+import { hash, dehash } from "../util/encrypt";
 
 const CodingQuizStartPage = ({ match }) => {
   const [start, setStart] = useState(false);
   const [user, setUser] = useState({});
   const submit = useState(false);
-  // const [questions, setQuestions] = useState([]);
-  const [questions, setQuestions] = useState([
-    { _id: "1", statement: "asad", options: ["op1", "op2"] },
-    { _id: "2", statement: "asad", options: ["op1", "op2"] },
-    { _id: "3", statement: "asad", options: ["op1", "op2"] },
-    { _id: "4", statement: "asad", options: ["op1", "op2"] },
-    { _id: "5", statement: "asad", options: ["op1", "op2"] },
-    { _id: "6", statement: "asad", options: ["op1", "op2"] },
-    { _id: "7", statement: "asad", options: ["op1", "op2"] },
-    { _id: "8", statement: "asad", options: ["op1", "op2"] },
-  ]);
+  const [questions, setQuestions] = useState([]);
   const [redirect, setRedirect] = useState(false);
   useEffect(() => {
+    // localStorage.setItem("session#hash%20t", hash(0));
     async function getQuestions() {
       try {
         const local = JSON.parse(localStorage.getItem("questions2"));
         // alert(local);
         if (local && local.length) {
-          // return setQuestions(local);
+          return setQuestions(local);
         }
         const { data } = await axios.get(`/quiz/start/${match.params.id}`); //!add route
-        // console.log("questions", data);
+        console.log("questions", data);
 
         localStorage.setItem("questions2", JSON.stringify(data.questionIds));
-        // setQuestions(data.questionIds);
+        setQuestions(data.questionIds);
       } catch (err) {
-        alert(err);
+        alert("CANT FETCH QUESTIONS", err);
         // localStorage.setItem("questions", JSON.stringify([]));
         // setQuestions([]);
         setRedirect(true);
@@ -48,7 +39,7 @@ const CodingQuizStartPage = ({ match }) => {
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
-    let start = localStorage.getItem("session*&startc");
+    let start = localStorage.getItem("session*&start2");
     if (!start) {
       start = String.fromCharCode(0);
     }
@@ -56,9 +47,9 @@ const CodingQuizStartPage = ({ match }) => {
   }, []);
 
   function startQuiz() {
-    localStorage.setItem("session*&startc", String.fromCharCode(1));
-    localStorage.setItem("session#hash%20tc", String.fromCharCode(0));
-    localStorage.setItem("session_$index%c", String.fromCharCode(0 * 2 + 6));
+    localStorage.setItem("session*&start2", String.fromCharCode(1));
+    localStorage.setItem("session#hash%20t2", hash(0));
+    // localStorage.setItem("session_$index%", String.fromCharCode(0 * 2 + 6));
     setStart(true);
   }
   //! check if quiz start from backend
@@ -71,7 +62,13 @@ const CodingQuizStartPage = ({ match }) => {
   return (
     <>
       {start ? (
-        <CodingQuiz submit={submit} user={user} questions={questions} />
+        <CodingQuiz
+          hash={hash}
+          dehash={dehash}
+          submit={submit}
+          user={user}
+          questions={questions}
+        />
       ) : (
         <div className="quiz_body">
           <div className="container">

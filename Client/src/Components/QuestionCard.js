@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import "./question.css";
 
@@ -6,11 +6,11 @@ const Question = ({ num, question: { _id, statement, options }, markAns }) => {
   // function optionSelected(e) {
   //   console.log(e.target.value);
   // }
-
+  const [current, setCurrent] = useState("");
   return (
     <div>
       <h6 className="mt-2 mb-2">
-        <span className="auto_submit_span">Q{num}.</span> {statement}
+        <span className="auto_submit_span">Q{num}.</span> <p>{statement}</p>
       </h6>
       <Form id={_id}>
         <Form.Group>
@@ -20,7 +20,7 @@ const Question = ({ num, question: { _id, statement, options }, markAns }) => {
               // option.checked === false;
               return (
                 <Form.Check
-                  // checked={true}
+                  checked={option === current}
                   type="radio"
                   key={option}
                   label={option}
@@ -31,6 +31,7 @@ const Question = ({ num, question: { _id, statement, options }, markAns }) => {
                   onChange={(e) => {
                     // console.log(e.target.checked);
                     // e.target.checked = true;
+                    setCurrent(e.target.value);
                     markAns(e, _id);
                   }}
                 /> //! fix radioo buutons

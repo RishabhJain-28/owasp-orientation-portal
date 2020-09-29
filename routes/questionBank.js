@@ -27,6 +27,7 @@ router.post("/generate", async (req, res) => {
       userId: Joi.string().trim().required(),
       quizId: Joi.string().trim().required(),
     });
+    console.log(req.body);
     const { value, error } = schema.validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
@@ -39,7 +40,11 @@ router.post("/generate", async (req, res) => {
       quiz: value.quizId,
       participant: value.userId,
     }).populate("questionIds", "-answer");
-    if (existingQuestionBank) return res.status(200).send(existingQuestionBank);
+    if (existingQuestionBank) {
+      console.log("existing", existingQuestion);
+
+      return res.status(200).send(existingQuestionBank);
+    }
 
     let questions = [];
     if (existingQuiz.haveSubs) {
@@ -49,6 +54,7 @@ router.post("/generate", async (req, res) => {
           quiz: value.quizId,
           sub: sub.name,
         }).exec();
+        console.log("X ", x);
         x = x.map((i) => i._id);
         x = shuffle(x);
         x = x.slice(0, sub.number);
@@ -81,7 +87,7 @@ router.post("/generate", async (req, res) => {
       "-answer"
     );
 
-    console.log(final);
+    console.log("final", final);
     res.status(200).send(final);
   } catch (error) {
     console.log("Error occured here \n", error);

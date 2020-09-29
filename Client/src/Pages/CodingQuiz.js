@@ -2,63 +2,78 @@ import React, { useState, useEffect } from "react";
 import Question from "../Components/QuestionCard";
 import { ButtonGroup, ProgressBar } from "react-bootstrap";
 import axios from "../util/axios";
+import { Link } from "react-router-dom";
 import "../Components/quiz.css";
-
-const CodingQuiz = ({ questions, user, submit: [submit, setSubmit] }) => {
-  const [maxTime] = useState(2 * 60);
-  const [time, setTime] = useState(0);
+import { hash, dehash } from "../util/encrypt";
+const CodingQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
+  const [maxTime] = useState(15);
+  const [time, setTime] = useState();
   const [timerID, setTimerID] = useState("");
   // const [q_index, setQ_index] = useState(0);
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(0);
+  // function hash(i) {
+  //   return i + 100;
+  //   // return String.fromCharCode(i + 100);
+  // }
+  // function dehash(code) {
+  //   return code - 100;
+  //   // return code.charCodeAt(0) - 100;
+  // }
   useEffect(() => {
-    // console.log(questions);
-    // alert(JSON.stringify(questions));
-    let time = localStorage.getItem("session#hash%20tc"); //!time
-    // let index = localStorage.getItem("session_$index%c"); //!q_index
-    // if (!index) {
-    //   localStorage.setItem("session_$index%c", String.fromCharCode(0 * 2 + 6));
-    //   index = String.fromCharCode(0 * 2 + 6);
-    // }
+    let score = localStorage.getItem("score2");
+    console.log(score);
+    // console.log("questions", questions);
+    let time = localStorage.getItem("session#hash%20t2"); //!time
+    let ans = localStorage.getItem("session#ans2"); //!time
+    if (ans) setAnswers(JSON.parse(ans));
+    if (score) setScore(score);
+    // console.log("a", time);
     if (!time) {
-      localStorage.setItem("session#hash%20tc", String.fromCharCode(0));
-      time = String.fromCharCode(0);
+      localStorage.setItem("session#hash%20t2", hash(0));
+      console.log("setting time 0");
+      time = hash(0);
+      setTime(0);
     }
-    // let decodedIndex = (index.charCodeAt(0) - 6) / 2;
-    let decodedTime = time.charCodeAt(0);
-    // if (decodedIndex === questions.length) {
-    //   localStorage.setItem("session#hash%20tc", String.fromCharCode(0));
-    //   localStorage.setItem("session_$index%c", String.fromCharCode(6 * 2 + 6));
-    //   return setSubmit(true);
-    // }
-    if (maxTime < decodedTime) {
-      localStorage.setItem("session#hash%20tc", String.fromCharCode(0));
-      decodedTime = 0;
-      // decodedIndex++;
+    // console.log("b", time);
+
+    let decodedTime = dehash(time);
+    // console.log("c-decoded", decodedTime);
+    if (decodedTime === -1) {
+      // console.log("-1", decodedTime);
+      // setQ_index(6);
+      setSubmit(true);
       return;
-      // if (decodedIndex >= questions.length) return submitQuiz();
-      // localStorage.setItem(
-      //   "session_$index%c",
-      //   String.fromCharCode(decodedIndex * 2 + 6)
-      // );
     }
-    setTime(time ? decodedTime : 0);
-    // setQ_index(index ? decodedIndex : 0);
+
+    if (decodedTime >= maxTime * questions.length) {
+      // console.log("d-lock", time);
+      localStorage.setItem("session#hash%20t2", hash(-1));
+      return submitQuiz();
+    }
+    setTime(decodedTime);
+    // console.log("e-state-time", decodedTime);
+    // setQ_index(Math.floor(decodedTime / maxTime));
   }, []);
 
   useEffect(() => {
     if (submit) return;
+    // console.log("time in effect ", time);
+    if (isNaN(Number(time))) return;
     setTimerID(
       setTimeout(() => {
+        // console.log("time in timeout ", time);
         let t = time;
-        if (t === maxTime) {
-          // if (q_index + 1 >= questions.length)
+        if (t === -1) return;
+        if (t >= maxTime * questions.length) {
           submitQuiz();
-          // else nextQuestion();
+          //  nextQuestion();
         } else {
           t++;
-          localStorage.setItem("session#hash%20tc", String.fromCharCode(t));
+          localStorage.setItem("session#hash%20t2", hash(t));
           setTime(t);
+          // console.log(t);
+          // setQ_index(Math.floor(t / maxTime));
         }
       }, 1000)
     );
@@ -74,26 +89,31 @@ const CodingQuiz = ({ questions, user, submit: [submit, setSubmit] }) => {
         responses: answers,
       });
       console.log(data);
+      localStorage.setItem("score2", data.score);
       setScore(data.score);
     } catch (err) {
       alert("can not resubmit ");
     }
-    localStorage.setItem("session#hash%20tc", String.fromCharCode(0));
-    // localStorage.setItem("session_$index%c", String.fromCharCode(6 * 2 + 6));
+    clearTimeout(timerID);
+    setTime(-1);
+    // console.log("hash shoulld ve -1", hash(-1));
+    localStorage.setItem("session#hash%20t2", hash(-1));
+    // localStorage.setItem("session_$index%", String.fromCharCode(6 * 2 + 6));
     setSubmit(true);
   }
   // function nextQuestion() {
-  //   let i = q_index;
-  //   i++;
-  //   localStorage.setItem("session_$indexc%", String.fromCharCode(i * 2 + 6));
-  //   localStorage.setItem("session#hash%20tc", String.fromCharCode(0));
-  //   setTime(0);
-  //   setQ_index(i);
+  //   let t = time;
+  //   t = (q_index + 1) * maxTime;
+  //   // localStorage.setItem("session_$index%", String.fromCharCode(i * 2 + 6));
+  //   localStorage.setItem("session#hash%20t2", hash(t));
+  //   setTime(t);
+  //   setQ_index(Math.floor(t / maxTime));
   // }
   function markAns(e, id) {
     const ans = answers;
     ans[id] = e.target.value;
     console.log(ans);
+    localStorage.setItem("session#ans2", JSON.stringify(ans));
     setAnswers(ans);
   }
   return (
@@ -108,7 +128,7 @@ const CodingQuiz = ({ questions, user, submit: [submit, setSubmit] }) => {
         </div>
         <div className="row justify-content-center mt-3 mb-4">
           <h1 className="quiz_heading">
-            CODING <span>QUIZ</span>
+            <span>FUN</span> QUIZ
           </h1>
         </div>
         {!submit ? (
@@ -116,20 +136,26 @@ const CodingQuiz = ({ questions, user, submit: [submit, setSubmit] }) => {
             <ProgressBar
               className="mb-3"
               animated
-              now={time}
+              now={Math.floor(time % maxTime)}
               min={0}
               max={maxTime}
             />
+            {/* {alert(q_index)} */}
             {questions.map((question, i) => (
-              <div key={question._id} className="mb-2 question">
+              <div className="mb-2 question">
                 <Question num={i + 1} markAns={markAns} question={question} />
               </div>
             ))}
-            {maxTime - time < 60 && (
+            {/* {q_index < questions.length && (
+                
+              )} */}
+            {maxTime * questions.length - time < 5 && (
               <div className="mb-2 question">
                 <p>
                   Auto submitting in{" "}
-                  <span className="auto_submit_span">{maxTime - time}</span>{" "}
+                  <span className="auto_submit_span">
+                    {maxTime * questions.length - time}
+                  </span>{" "}
                   seconds...
                 </p>
               </div>
@@ -159,6 +185,8 @@ function AfterSubmit({ user, score }) {
     <div className="question">
       Nicely done {user.username}! You got{" "}
       <span className="auto_submit_span">{score}</span> marks!!!
+      <br />
+      <Link to="/dashboard">Back to dashboard</Link>
     </div>
   );
 }
