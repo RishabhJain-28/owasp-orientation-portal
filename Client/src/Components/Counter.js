@@ -11,12 +11,13 @@ const Counter = () => {
     const countDown = new Date("Sep 29, 2020 17:30:00").getTime();
     // 5:30pm on 29th September,2020
     const now = new Date().getTime();
-    const distance = countDown - now;
+    let distance = countDown - now;
+    if (distance < 0) distance = 0;
     const second = 1000,
       minute = second * 60,
       hour = minute * 60,
       day = 24 * hour;
-    setSeconds(Math.floor((distance % minute) / second));
+    setSeconds(distance <= 0 ? 0 : Math.floor((distance % minute) / second));
 
     setDays(Math.floor(distance / day));
     setHours(Math.floor((distance % day) / hour));
@@ -24,7 +25,8 @@ const Counter = () => {
     if (!isActive) {
       const id = setInterval(() => {
         const now = new Date().getTime();
-        const distance = countDown - now;
+        let distance = countDown - now;
+        if (distance < 0) distance = 0;
         const second = 1000,
           minute = second * 60,
           hour = minute * 60,
@@ -36,6 +38,9 @@ const Counter = () => {
         setMinutes(Math.floor((distance % hour) / minute));
 
         setSeconds((seconds) => seconds + 1);
+        setSeconds(
+          distance <= 0 ? 0 : Math.floor((distance % minute) / second)
+        );
       }, 1000);
       setIsActive(true);
     }
