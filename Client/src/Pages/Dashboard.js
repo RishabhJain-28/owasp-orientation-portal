@@ -22,6 +22,7 @@ const Dashboard = ({ location }) => {
   const [quizzes, setQuizzes] = useState([]);
   const [redirect, setRedirect] = useState(false);
   useEffect(() => {
+    localStorage.clear();
     async function getProfile() {
       try {
         const { data } = await axios.get("/participants/profile");
