@@ -42,6 +42,7 @@ const CodingQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
     if (decodedTime === -1) {
       // console.log("-1", decodedTime);
       // setQ_index(6);
+      alert("sdsadasdad");
       setSubmit(true);
       return;
     }
@@ -128,7 +129,7 @@ const CodingQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
         </div>
         <div className="row justify-content-center mt-3 mb-4">
           <h1 className="quiz_heading">
-            <span>FUN</span> QUIZ
+            CODING <span>QUIZ</span>
           </h1>
         </div>
         {!submit ? (

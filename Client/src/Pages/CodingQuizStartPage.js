@@ -81,7 +81,7 @@ const CodingQuizStartPage = ({ match }) => {
             </div>
             <div className="row justify-content-center mt-3 mb-4">
               <h1 className="quiz_heading">
-                <span>FUN</span> QUIZ
+                CODING <span>QUIZ</span>
               </h1>
             </div>
             <div className="mb-2 question">
