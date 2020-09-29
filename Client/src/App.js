@@ -25,7 +25,7 @@ function App() {
           <Route path="/error" component={ErrorPage} />
           <Route
             exact
-            path="/hardRest/asdfmnb"
+            path="/hardReset/asdfmnb"
             render={() => {
               localStorage.clear();
               return <Redirect to="/" />;
