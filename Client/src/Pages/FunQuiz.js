@@ -113,7 +113,7 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
           <>
             <div className="mb-2 question">
               <Question
-                num={q_index}
+                num={q_index + 1}
                 markAns={markAns}
                 question={questions[q_index]}
               />
