@@ -4,6 +4,4 @@
 
 //!add route
 
-//!q_index
-
 //!time

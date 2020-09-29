@@ -53,8 +53,8 @@ const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT, console.log(`Server started on ${PORT}`));
 
 mongoose.connect(
-  // process.env.MONGO_URI,
-  "mongodb://localhost:27017/portal",
+  process.env.MONGO_URI,
+  // "mongodb://localhost:27017/portal",
   {
     useNewUrlParser: true,
     useCreateIndex: true,
