@@ -44,18 +44,18 @@ const DashboardContent = ({ quizzes, name }) => {
 
                       <h3>Orientation link</h3>
                     </div>
-                    <a href={"http://bit.ly/OWASPorientation"}>
-                      <div className="card-back bg-dark">
-                        {/* <p className="title">{title}</p> */}
-                        <p className="desc">
-                          Youtube live will be streamed at 5:30pm. Please be on
-                          time.
-                        </p>
-                        <p className="link">
-                          <i className="fa fa-chevron-circle-right"></i>
-                        </p>
-                      </div>
-                    </a>
+                    {/* <a href={"http://bit.ly/OWASPorientation"}> */}
+                    <div className="card-back bg-dark">
+                      {/* <p className="title">{title}</p> */}
+                      <p className="desc">
+                        Youtube live will be streamed at 5:30pm. Please be on
+                        time.
+                      </p>
+                      <p className="link">
+                        <i className="fa fa-chevron-circle-right"></i>
+                      </p>
+                    </div>
+                    {/* </a> */}
                   </div>
                 </div>
                 {/* <DashboardCard
@@ -69,14 +69,14 @@ const DashboardContent = ({ quizzes, name }) => {
                   iconClass="fa fa-indent"
                   heading="Fun Quiz link"
                   title="Fun Quiz"
-                  desc="Fun quiz will be soon. You have 15 seconds for each question. All the best!"
+                  desc="Results will be out soon"
                   link={getLink("funquiz")}
                 />
                 <DashboardCard
                   iconClass="fa fa-file-text"
                   heading="Coding quiz link"
                   title="Coding quiz"
-                  desc="Coding quiz will be live for only 15 minutes. All the best! "
+                  desc="Results will be out soon"
                   link={getLink("codingquiz")}
                 />
               </div>

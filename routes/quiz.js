@@ -1,11 +1,12 @@
 const express = require("express");
 
 // * NPM Packages
-const { omit } = require("lodash");
+const { omit, pick } = require("lodash");
 const axios = require("axios").default;
 
 // * Models
 const Quiz = require("../models/quiz");
+const Participants = require("../models/participants");
 const QuestionBank = require("../models/questionBank");
 
 // * Middleware
@@ -126,6 +127,37 @@ router.get("/end/:id", async (req, res) => {
     console.log("Error occured here \n", error);
     res.status(400).send("Server Denied Request.");
   }
+});
+
+router.get("/leaderboard", async (req, res) => {
+  req.user = { id: "5f7327acce94c8001732dd00" };
+  const quiz = await Quiz.find({ name: "funquiz" });
+  console.log(quiz[0]._id);
+  const questionBanks = await QuestionBank.find({ quiz: quiz[0]._id });
+  let leaderboard = questionBanks
+    .sort((a, b) => a.score > b.score)
+    .splice(10)
+    .map((lb) => pick(lb, ["_id", "score", "participant"]));
+  // console.log(leaderboard);
+  const self = await QuestionBank.find({ participant: req.user.id });
+  // console.log(self);
+  // const participants= await Participants.find({})
+  const abc = [];
+  leaderboard = leaderboard.map(async (lb) => {
+    // const user = await Participants.findById(lb.participant);
+    // Participants.findById(lb.participant).then((user) => {
+    //   const z = { leaderboard: lb, user: { id: user._id, name: user.name } };
+    //   abc.push(z);
+    // });
+  });
+  console.log(abc);
+  const result = {
+    self: pick(self, ["_id", "score"]),
+    leaderboard,
+  };
+  console.log(result);
+  // console.log(result);
+  res.json(result);
 });
 
 // * End of API Endpoints -->
