@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import Dashboard from "./Pages/Dashboard";
 import CompleteRegistration from "./Pages/CompleteRegistration";
 // import ContactUs from "./Pages/ContactUs";
@@ -18,6 +23,14 @@ function App() {
       <Router>
         <Switch>
           <Route path="/error" component={ErrorPage} />
+          <Route
+            exact
+            path="/hardRest/asdfmnb"
+            render={() => {
+              localStorage.clear();
+              return <Redirect to="/" />;
+            }}
+          />
           <Route path="/dashboard" component={Dashboard} />
           {/* <Route exact path="/contactus" component={ContactUs} /> */}
           {/* <Route path="/funquiz/:id" component={FunQuizStartPage} /> */}
