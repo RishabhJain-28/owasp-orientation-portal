@@ -8,8 +8,8 @@ const Counter = () => {
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    const countDown = new Date("Sep 30, 2020 00:00:00").getTime();
-
+    const countDown = new Date("Sep 29, 2020 17:30:00").getTime();
+    // 5:30pm on 29th September,2020
     const now = new Date().getTime();
     const distance = countDown - now;
     const second = 1000,

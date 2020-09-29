@@ -22,9 +22,8 @@ const DashboardAnnouncments = () => {
             <div className="jumbotron">
               <p>
                 Navigate to the Dashboard section for Orientation links.
-                Orientation will commence at hh:mm pm on dd/mm/yyyy. Fun quiz
-                shall start at hh:mm pm and Coding/Apti quiz shall commence at
-                hh:mm pm.
+                Orientation will commence at 5:30pm on 29th September,2020.
+                Stick till the end know about the recruitment process!!!
               </p>
             </div>
           </div>

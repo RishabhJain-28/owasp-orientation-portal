@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const DashboardNav = ({ user: { username, profilePicLink }, location }) => {
+const DashboardNav = ({ user: { name, profilePicLink }, location }) => {
   function isActive(currentPath) {
     const pathname = location.pathname.split("/");
     return pathname[pathname.length - 1] === currentPath;
@@ -19,7 +19,7 @@ const DashboardNav = ({ user: { username, profilePicLink }, location }) => {
             <img alt="profilePic" src={profilePicLink} />
           </div>
           <br />
-          <h2 className="username">{username}</h2>
+          <h2 className="username">{name}</h2>
         </div>
 
         <ul className="left-nav">

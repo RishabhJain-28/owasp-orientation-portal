@@ -22,16 +22,26 @@ const Leaderboard = () => {
 
             <div class="row showboard">
               <div class="col-12 align-content-start">
-                <div class=" jumbotron 1" id="top10"></div>
+                <div class=" jumbotron 1" id="top10">
+                  <p>fcksdnfjsdnfjsn</p>
+                </div>
               </div>
               <div class="col-12 align-content-start">
-                <div class=" jumbotron 2" id="top10"></div>
+                <div class=" jumbotron 2" id="top10">
+                  <p>fcksdnfjsdnfjsn</p>
+                  fsdfds
+                </div>
               </div>
               <div class="col-12 align-content-start">
-                <div class=" jumbotron 3" id="top10"></div>
+                <div class=" jumbotron 3" id="top10">
+                  <p>fcksdnfjsdnfjsn</p>
+                  fdsfdsf
+                </div>
               </div>
               <div class="col-12 align-content-start">
-                <div class=" jumbotron 4" id="top10"></div>
+                <div class=" jumbotron 4" id="top10">
+                  <p>fcksdnfjsdnfjsn</p>
+                </div>
               </div>
               <div class="col-12 align-content-start">
                 <div class=" jumbotron 5" id="top10"></div>

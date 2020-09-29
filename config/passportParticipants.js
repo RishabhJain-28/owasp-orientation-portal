@@ -26,11 +26,34 @@ passport.use(
             false,
             "NOT REGISTERED"
           );
-
+        const branches = [
+          "CHEMICAL ENGINEERING – CHE",
+          "CIVIL ENGINEERING - CIE",
+          "COMPUTER ENGINEERING - COE",
+          "COMPUTER SCIENCE AND ENGINEERING(PATIALA CAMPUS) – COPC",
+          "ELECTRICAL ENGINEERING - ELE",
+          "ELECTRONICS AND COMMUNICATION ENGINEERING - ECE",
+          "ELECTRONICS AND COMPUTER ENGINEERING - ENC",
+          "ELECTRONICS (INSTRUMENTATION AND CONTROL) ENGINEERING - EIC",
+          "MECHANICAL ENGINEERING – MEE",
+          "MECHANICAL ENGINEERING(PRODUCTION) - MPE",
+          "MECHATRONICS - MEC",
+          "ELECTRICAL AND COMPUTER ENGINEERING - MEC",
+        ];
         const schema = Joi.object({
-          name: Joi.string().trim(),
-          branch: Joi.string().min(1).max(150).required().trim(),
-          username: Joi.string().min(1).max(150).required().trim(),
+          name: Joi.string().trim().required().max(150),
+          branch: Joi.string()
+            .valid(...branches)
+            .min(1)
+            .max(150)
+            .required()
+            .trim(),
+          year: Joi.string()
+            .valid("First year", "Second year")
+            .min(1)
+            .max(150)
+            .required()
+            .trim(),
           rollNumber: Joi.string().trim().required(),
           phoneNumber: Joi.string().trim().required(),
         });
@@ -46,14 +69,15 @@ passport.use(
           );
 
         participant = new Participant({
-          name: profile.displayName,
+          name: value.name,
           email: profile.email,
           googleId: profile.id,
           profilePicLink: profile.picture,
           phoneNo: Number(value.phoneNumber),
           rollNo: Number(value.rollNumber),
           branch: value.branch,
-          username: value.username,
+          year: value.year,
+          // username: value.username,
         });
 
         await participant.save();

@@ -78,6 +78,7 @@ router.get("/all", isAuthenticated, async (req, res) => {
 
 // * Start quiz ( Participants )
 router.get("/start/:id", async (req, res) => {
+  console.log(req.user._id);
   try {
     let quiz = await Quiz.findById(req.params.id).exec();
     if (!quiz || !quiz.active || quiz.completed)
@@ -86,8 +87,8 @@ router.get("/start/:id", async (req, res) => {
     const { data, status } = await axios.post(
       "http://localhost:5000/api/questionBank/generate",
       {
-        // userId: req.user._id,
-        userId: "5f710e9370f4330017c00725",
+        userId: req.user._id,
+        // userId: req.user.,
         quizId: req.params.id,
       }
     );
