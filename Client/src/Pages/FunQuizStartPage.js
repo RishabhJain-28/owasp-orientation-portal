@@ -4,9 +4,16 @@ import axios from "../util/axios";
 import { Redirect } from "react-router-dom";
 
 import "../Components/quiz.css";
-
+import { hash, dehash } from "../util/encrypt";
 import FunQuiz from "./FunQuiz";
-
+// function hash(i) {
+//   return i + 100;
+//   // return String.fromCharCode(i + 100);
+// }
+// function dehash(code) {
+//   return code - 100;
+//   // return code.charCodeAt(0) - 100;
+// }
 const FunQuizStartPage = ({ match }) => {
   const [start, setStart] = useState(false);
   const [user, setUser] = useState({});
@@ -14,6 +21,7 @@ const FunQuizStartPage = ({ match }) => {
   const [questions, setQuestions] = useState([]);
   const [redirect, setRedirect] = useState(false);
   useEffect(() => {
+    localStorage.setItem("session#hash%20t", hash(0));
     async function getQuestions() {
       try {
         const local = JSON.parse(localStorage.getItem("questions"));
@@ -47,8 +55,8 @@ const FunQuizStartPage = ({ match }) => {
 
   function startQuiz() {
     localStorage.setItem("session*&start", String.fromCharCode(1));
-    localStorage.setItem("session#hash%20t", String.fromCharCode(0));
-    localStorage.setItem("session_$index%", String.fromCharCode(0 * 2 + 6));
+    localStorage.setItem("session#hash%20t", hash(0));
+    // localStorage.setItem("session_$index%", String.fromCharCode(0 * 2 + 6));
     setStart(true);
   }
   //! check if quiz start from backend
@@ -61,7 +69,13 @@ const FunQuizStartPage = ({ match }) => {
   return (
     <>
       {start ? (
-        <FunQuiz submit={submit} user={user} questions={questions} />
+        <FunQuiz
+          hash={hash}
+          dehash={dehash}
+          submit={submit}
+          user={user}
+          questions={questions}
+        />
       ) : (
         <div className="quiz_body">
           <div className="container">

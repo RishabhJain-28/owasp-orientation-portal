@@ -4,60 +4,72 @@ import { ButtonGroup, ProgressBar } from "react-bootstrap";
 import axios from "../util/axios";
 import { Link } from "react-router-dom";
 import "../Components/quiz.css";
-
+import { hash, dehash } from "../util/encrypt";
 const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
   const [maxTime] = useState(15);
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState();
   const [timerID, setTimerID] = useState("");
   const [q_index, setQ_index] = useState(0);
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(0);
-
+  // function hash(i) {
+  //   return i + 100;
+  //   // return String.fromCharCode(i + 100);
+  // }
+  // function dehash(code) {
+  //   return code - 100;
+  //   // return code.charCodeAt(0) - 100;
+  // }
   useEffect(() => {
+    // console.log("questions", questions);
     let time = localStorage.getItem("session#hash%20t"); //!time
-    let index = localStorage.getItem("session_$index%"); //!q_index
-    if (!index) {
-      localStorage.setItem("session_$index%", String.fromCharCode(0 * 2 + 6));
-      index = String.fromCharCode(0 * 2 + 6);
-    }
-    if (!time) {
-      localStorage.setItem("session#hash%20t", String.fromCharCode(0));
-      time = String.fromCharCode(0);
-    }
-    let decodedIndex = (index.charCodeAt(0) - 6) / 2;
-    let decodedTime = time.charCodeAt(0);
-    if (decodedIndex === questions.length) {
-      localStorage.setItem("session#hash%20t", String.fromCharCode(0));
-      localStorage.setItem("session_$index%", String.fromCharCode(6 * 2 + 6));
-      return setSubmit(true);
-    }
-    if (maxTime < decodedTime) {
-      localStorage.setItem("session#hash%20t", String.fromCharCode(0));
-      decodedTime = 0;
-      decodedIndex++;
 
-      if (decodedIndex >= questions.length) return submitQuiz();
-      localStorage.setItem(
-        "session_$index%",
-        String.fromCharCode(decodedIndex * 2 + 6)
-      );
+    // console.log("a", time);
+    if (!time) {
+      localStorage.setItem("session#hash%20t", hash(0));
+      console.log("setting time 0");
+      time = hash(0);
+      setTime(0);
     }
-    setTime(time ? decodedTime : 0);
-    setQ_index(index ? decodedIndex : 0);
+    // console.log("b", time);
+
+    let decodedTime = dehash(time);
+    console.log("c-decoded", decodedTime);
+    if (decodedTime === -1) {
+      // console.log("-1", decodedTime);
+      setQ_index(6);
+      setSubmit(true);
+      return;
+    }
+
+    if (decodedTime >= maxTime * questions.length) {
+      // console.log("d-lock", time);
+      localStorage.setItem("session#hash%20t", hash(-1));
+      return submitQuiz();
+    }
+    setTime(decodedTime);
+    // console.log("e-state-time", decodedTime);
+    setQ_index(Math.floor(decodedTime / maxTime));
   }, []);
 
   useEffect(() => {
     if (submit) return;
+    // console.log("time in effect ", time);
+    if (isNaN(Number(time))) return;
     setTimerID(
       setTimeout(() => {
+        // console.log("time in timeout ", time);
         let t = time;
-        if (t === maxTime) {
-          if (q_index + 1 >= questions.length) submitQuiz();
-          else nextQuestion();
+        if (t === -1) return;
+        if (t >= maxTime * questions.length) {
+          submitQuiz();
+          //  nextQuestion();
         } else {
           t++;
-          localStorage.setItem("session#hash%20t", String.fromCharCode(t));
+          localStorage.setItem("session#hash%20t", hash(t));
           setTime(t);
+          // console.log(t);
+          setQ_index(Math.floor(t / maxTime));
         }
       }, 1000)
     );
@@ -68,26 +80,29 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
     console.log("QUIZ SUBMIITED");
 
     alert("QUIZ SUBMIITED");
-    try {
-      const { data } = await axios.post("/questionBank/submit", {
-        responses: answers,
-      });
-      console.log(data);
-      setScore(data.score);
-    } catch (err) {
-      alert("can not resubmit ");
-    }
-    localStorage.setItem("session#hash%20t", String.fromCharCode(0));
-    localStorage.setItem("session_$index%", String.fromCharCode(6 * 2 + 6));
+    // try {
+    //   const { data } = await axios.post("/questionBank/submit", {
+    //     responses: answers,
+    //   });
+    //   console.log(data);
+    //   setScore(data.score);
+    // } catch (err) {
+    //   alert("can not resubmit ");
+    // }
+    clearTimeout(timerID);
+    setTime(-1);
+    // console.log("hash shoulld ve -1", hash(-1));
+    localStorage.setItem("session#hash%20t", hash(-1));
+    // localStorage.setItem("session_$index%", String.fromCharCode(6 * 2 + 6));
     setSubmit(true);
   }
   function nextQuestion() {
-    let i = q_index;
-    i++;
-    localStorage.setItem("session_$index%", String.fromCharCode(i * 2 + 6));
-    localStorage.setItem("session#hash%20t", String.fromCharCode(0));
-    setTime(0);
-    setQ_index(i);
+    let t = time;
+    t = (q_index + 1) * maxTime;
+    // localStorage.setItem("session_$index%", String.fromCharCode(i * 2 + 6));
+    localStorage.setItem("session#hash%20t", hash(t));
+    setTime(t);
+    setQ_index(Math.floor(t / maxTime));
   }
   function markAns(e, id) {
     const ans = answers;
@@ -113,15 +128,20 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
         {!submit ? (
           <>
             <div className="mb-2 question">
-              <Question
-                num={q_index + 1}
-                markAns={markAns}
-                question={questions[q_index]}
-              />
-              {q_index === questions.length - 1 && maxTime - time < 5 && (
+              {/* {alert(q_index)} */}
+              {q_index < questions.length && (
+                <Question
+                  num={q_index + 1}
+                  markAns={markAns}
+                  question={questions[q_index]}
+                />
+              )}
+              {maxTime * questions.length - time < 5 && (
                 <p>
                   Auto submitting in{" "}
-                  <span className="auto_submit_span">{maxTime - time}</span>{" "}
+                  <span className="auto_submit_span">
+                    {maxTime * questions.length - time}
+                  </span>{" "}
                   seconds...
                 </p>
               )}
@@ -129,7 +149,7 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
             <ProgressBar
               className="mb-3"
               animated
-              now={time}
+              now={Math.floor(time % maxTime)}
               min={0}
               max={maxTime}
             />

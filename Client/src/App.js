@@ -8,7 +8,7 @@ import CompleteRegistration from "./Pages/CompleteRegistration";
 import FunQuizStartPage from "./Pages/FunQuizStartPage";
 import CodingQuizStartPage from "./Pages/CodingQuizStartPage";
 import ErrorPage from "./Pages/ErrorPage";
-
+import { hash, dehash } from "./util/encrypt";
 function App() {
   useEffect(() => {
     AOS.init();
@@ -20,31 +20,33 @@ function App() {
           <Route path="/error" component={ErrorPage} />
           <Route path="/dashboard" component={Dashboard} />
           {/* <Route exact path="/contactus" component={ContactUs} /> */}
-          {/* <Route path="/funquiz" component={FunQuizStartPage} /> */}
+          {/* <Route path="/funquiz/:id" component={FunQuizStartPage} /> */}
           <Route
             exact
             render={(props) => {
-              let start = localStorage.getItem("session*&start");
-
-              if (!start) {
-                start = String.fromCharCode(0);
-              }
-
               let time = localStorage.getItem("session#hash%20t");
-              if (!time) {
-                localStorage.setItem(
-                  "session#hash%20t",
-                  String.fromCharCode(0)
-                );
-                time = String.fromCharCode(0);
+              // if (!time) {
+              //   localStorage.setItem("session#hash%20t", hash(0));
+              //   time = hash(0);
+              // }
+              if (time) {
+                const decodedTime = dehash(time);
+                // localStorage.setItem("session#hash%20t", hash(0));
+                // time = hash(0);
+
+                console.log("before route", decodedTime);
+                console.log("performance", PerformanceNavigation.TYPE_RELOAD);
+                if (
+                  decodedTime !== -1 &&
+                  PerformanceNavigation.TYPE_RELOAD === 1
+                ) {
+                  console.log("in condition", decodedTime);
+                  localStorage.setItem(
+                    "session#hash%20t",
+                    hash(decodedTime + 1)
+                  );
+                }
               }
-              const decodedTime = time.charCodeAt(0);
-              console.log(decodedTime);
-              if (PerformanceNavigation.TYPE_RELOAD === 1)
-                localStorage.setItem(
-                  "session#hash%20t",
-                  String.fromCharCode(decodedTime + 1)
-                );
               return <FunQuizStartPage {...props} />;
             }}
             path="/funquiz/:id"
@@ -52,26 +54,17 @@ function App() {
           <Route
             exact
             render={(props) => {
-              let start = localStorage.getItem("session*&startc");
-
-              if (!start) {
-                start = String.fromCharCode(0);
-              }
-
               let time = localStorage.getItem("session#hash%20tc");
               if (!time) {
-                localStorage.setItem(
-                  "session#hash%20tc",
-                  String.fromCharCode(0)
-                );
-                time = String.fromCharCode(0);
+                localStorage.setItem("session#hash%20tc", hash(0));
+                time = hash(0);
               }
-              const decodedTime = time.charCodeAt(0);
+              const decodedTime = dehash(time);
               console.log(decodedTime);
               if (PerformanceNavigation.TYPE_RELOAD === 1)
                 localStorage.setItem(
                   "session#hash%20tc",
-                  String.fromCharCode(decodedTime + 1)
+                  hash(decodedTime + 1)
                 );
               return <CodingQuizStartPage {...props} />;
             }}

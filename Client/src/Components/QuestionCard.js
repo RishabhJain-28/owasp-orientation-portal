@@ -12,8 +12,8 @@ const Question = ({ num, question: { _id, statement, options }, markAns }) => {
       <h6 className="mt-2 mb-2">
         <span className="auto_submit_span">Q{num}.</span> {statement}
       </h6>
-      <Form>
-        <Form.Group id={_id}>
+      <Form id={_id}>
+        <Form.Group>
           {/* <Form.Control as="select"> */}
           {options &&
             options.map((option) => {
