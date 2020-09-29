@@ -166,6 +166,8 @@ function AfterSubmit({ user, score }) {
     <div className="question">
       Nicely done {user.username}! You got{" "}
       <span className="auto_submit_span">{score}</span> marks!!!
+      <br />
+      <Link to="/dashboard">Back to dashboard</Link>
     </div>
   );
 }
