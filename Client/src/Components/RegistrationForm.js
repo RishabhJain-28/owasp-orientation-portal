@@ -78,8 +78,8 @@ const RegistrationForm = ({ buttonText, ...rest }) => {
       </datalist>
       <Input
         type="number"
-        placeholder="Enter roll number"
-        label="ROLL NUMBER:"
+        placeholder="Enter Application number"
+        label="APPLICATION NUMBER:"
         value={rollNumber}
         name="rollNumber"
         required
