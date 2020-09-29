@@ -35,13 +35,36 @@ const DashboardContent = ({ quizzes, name }) => {
             </div>
             <div className="row">
               <div className="flex-container">
-                <DashboardCard
+                <div className="flex-item">
+                  <div className="flex-item-inner">
+                    <div className="card-front">
+                      <i
+                        className={`${"fa fa-video-camera"} fa-3x tile-icon icon-white`}
+                      ></i>
+
+                      <h3>Orientation link</h3>
+                    </div>
+                    <a href={"http://bit.ly/OWASPorientation"}>
+                      <div className="card-back bg-dark">
+                        {/* <p className="title">{title}</p> */}
+                        <p className="desc">
+                          Youtube live will be streamed at 5:30pm. Please be on
+                          time.
+                        </p>
+                        <p className="link">
+                          <i className="fa fa-chevron-circle-right"></i>
+                        </p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                {/* <DashboardCard
                   iconClass="fa fa-video-camera"
                   heading="Orientation link"
                   title="Orientation on Youtube"
                   desc="Youtube live will be streamed at 5:30pm. Please be on time."
                   link="http://bit.ly/OWASPorientation"
-                />
+                /> */}
                 <DashboardCard
                   iconClass="fa fa-indent"
                   heading="Fun Quiz link"
