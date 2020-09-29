@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Question from "../Components/QuestionCard";
 import { ButtonGroup, ProgressBar } from "react-bootstrap";
 import axios from "../util/axios";
+import { Link } from "react-router-dom";
 import "../Components/quiz.css";
 
 const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {

@@ -13,7 +13,7 @@ const Question = ({ num, question: { _id, statement, options }, markAns }) => {
         <span className="auto_submit_span">Q{num}.</span> {statement}
       </h6>
       <Form>
-        <Form.Group>
+        <Form.Group id={_id}>
           {/* <Form.Control as="select"> */}
           {options &&
             options.map((option) => {
