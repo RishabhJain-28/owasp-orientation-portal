@@ -10,7 +10,8 @@ const Question = ({ num, question: { _id, statement, options }, markAns }) => {
   return (
     <div>
       <h6 className="mt-2 mb-2">
-        <span className="auto_submit_span">Q{num}.</span> <p>{statement}</p>
+        <span className="auto_submit_span">Q{num}.</span>{" "}
+        <p style={{ whiteSpace: "pre-line" }}>{statement}</p>
       </h6>
       <Form id={_id}>
         <Form.Group>
