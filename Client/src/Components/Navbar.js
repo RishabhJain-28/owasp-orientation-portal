@@ -25,7 +25,7 @@ const NavbarComponent = () => {
               href={`${process.env.REACT_APP_BASE_URL}/api/auth/login`}
               // href="http://localhost:5000/api/auth/login"
             >
-              SIGNIN
+              SIGN IN
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
