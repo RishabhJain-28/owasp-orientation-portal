@@ -36,7 +36,7 @@ const CodingQuiz = ({ questions, user, submit: [submit, setSubmit] }) => {
       localStorage.setItem("session#hash%20tc", String.fromCharCode(0));
       decodedTime = 0;
       // decodedIndex++;
-
+      return;
       // if (decodedIndex >= questions.length) return submitQuiz();
       // localStorage.setItem(
       //   "session_$index%c",
