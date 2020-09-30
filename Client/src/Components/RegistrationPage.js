@@ -16,7 +16,9 @@ const RegistrationPage = () => {
               <div className="row">
                 <div className="col-md-12" id="head">
                   <div className=" centered heading-form">
-                    <div className="align-center">REGISTRATION</div>
+                    <div className="align-center">
+                      REGISTRATION FOR RECRUITMENT
+                    </div>
                   </div>
                 </div>
               </div>
@@ -40,13 +42,13 @@ const RegistrationPage = () => {
                       <h1 data-aos="flip-up" data-aos-duration="3000">
                         LEARN
                       </h1>
-                      <div
+                      {/* <div
                         className="countdown-phone"
                         style={{ color: "black" }}
                       >
                         Countdown to Orientation:
                       </div>
-                      <Counter />
+                      <Counter /> */}
                     </div>
                   </div>
                 </div>

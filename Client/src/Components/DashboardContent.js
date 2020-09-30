@@ -27,10 +27,8 @@ const DashboardContent = ({ quizzes, name }) => {
             <div className="jumbotron">
               <p>
                 Hey {name},Thank you for registering! We welcome you to the
-                Owasp student chapter portal! Orientation will commence at
-                5:30pm on 29th September,2020. Find the Youtube link down below.
-                Stand a chance to win a direct spot in personal interviews by
-                taking part in the quiz. Stay tuned!
+                Owasp student chapter portal! Recruitments will commence soon .
+                Stay tuned!
               </p>
             </div>
             <div className="row">
@@ -42,15 +40,12 @@ const DashboardContent = ({ quizzes, name }) => {
                         className={`${"fa fa-video-camera"} fa-3x tile-icon icon-white`}
                       ></i>
 
-                      <h3>Orientation link</h3>
+                      <h3>Recruitment link</h3>
                     </div>
                     {/* <a href={"http://bit.ly/OWASPorientation"}> */}
                     <div className="card-back bg-dark">
                       {/* <p className="title">{title}</p> */}
-                      <p className="desc">
-                        Youtube live will be streamed at 5:30pm. Please be on
-                        time.
-                      </p>
+                      <p className="desc">Will be live soon.</p>
                       <p className="link">
                         <i className="fa fa-chevron-circle-right"></i>
                       </p>

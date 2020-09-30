@@ -25,10 +25,10 @@ const RegistrationPageResponsive = () => {
                   <h1 data-aos="flip-up" data-aos-once data-aos-duration="3000">
                     LEARN
                   </h1>
-                  <div className="countdown-phone">
+                  {/* <div className="countdown-phone">
                     Countdown to Orientation:
                   </div>
-                  <Counter />
+                  <Counter /> */}
                 </div>
               </div>
             </div>
@@ -41,7 +41,7 @@ const RegistrationPageResponsive = () => {
                 <div className="row phone">
                   <div className="col-sm-12 form-body" id="head-phone">
                     <div className=" centered heading-form-phone">
-                      REGISTRATION
+                      REGISTRATION FOR RECRUITMENT
                     </div>
                   </div>
                 </div>
