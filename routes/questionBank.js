@@ -212,14 +212,26 @@ router.post("/submit", [isAuthenticated, activeQuiz], async (req, res) => {
     }
     questionBank.submitted = true;
     questionBank = await questionBank.save();
-
+    req.session.quiz = null;
+    req.session.questionBank = null;
     res
       .status(200)
       .json({ msg: "Quiz Response submitted.", score: questionBank.score });
   } catch (error) {
     console.log("Error occured here \n", error);
+    req.session.quiz = null;
+    req.session.questionBank = null;
     res.status(400).send("Server denied request.");
   }
+});
+router.get("/hardRESET", isAuthenticated, async (req, res) => {
+  const questionBank = await QuestionBank.findOneAndDelete({
+    participant: req.user._id,
+  });
+  req.session.quiz = null;
+  req.session.questionBank = null;
+  // req.session = {};
+  res.json({ msg: "HARD RESET DONE" });
 });
 
 // * End of API Endpoints -->

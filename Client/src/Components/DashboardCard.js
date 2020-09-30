@@ -9,15 +9,15 @@ const DashboardCard = ({ iconClass, heading, title, desc, link }) => {
 
           <h3>{heading}</h3>
         </div>
-        {/* <Link to={link}> */}
-        <div className="card-back bg-dark">
-          {/* <p className="title">{title}</p> */}
-          <p className="desc">DONE</p>
-          <p className="link">
-            <i className="fa fa-chevron-circle-right"></i>
-          </p>
-        </div>
-        {/* </Link> */}
+        <Link to={link}>
+          <div className="card-back bg-dark">
+            {/* <p className="title">{title}</p> */}
+            <p className="desc">{desc}</p>
+            <p className="link">
+              <i className="fa fa-chevron-circle-right"></i>
+            </p>
+          </div>
+        </Link>
       </div>
     </div>
   );

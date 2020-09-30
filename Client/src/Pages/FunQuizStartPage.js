@@ -15,24 +15,23 @@ const FunQuizStartPage = ({ match }) => {
   const [redirect, setRedirect] = useState(false);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    // localStorage.setItem("session#hash%20t", hash(0));
     async function getQuestions() {
       try {
-        const local = JSON.parse(localStorage.getItem("questions"));
-        // alert(local);
-        if (local && local.length) {
+        const local = JSON.parse(localStorage.getItem("questions3"));
+        if (start && local && local.length) {
           return setQuestions(local);
         }
+        // if (!submit[0]) return;
         const { data } = await axios.get(`/quiz/start/${match.params.id}`); //!add route
-        console.log("questions", data);
+        // console.log("questions3", data);
 
-        localStorage.setItem("questions", JSON.stringify(data.questionIds));
+        localStorage.setItem("questions3", JSON.stringify(data.questionIds));
         setQuestions(data.questionIds);
         setLoading(false);
       } catch (err) {
-        alert("Quiz has not been started yet", err);
-        // localStorage.setItem("questions", JSON.stringify([]));
-        // setQuestions([]);
+        if (err.status === 403)
+          return alert(`cookie1 error ${JSON.stringify(err)}`);
+        alert(`Quiz has not been started yet ${err}`);
         setRedirect(true);
       }
     }
@@ -41,7 +40,7 @@ const FunQuizStartPage = ({ match }) => {
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
-    let start = localStorage.getItem("session*&start");
+    let start = localStorage.getItem("session*&start3");
     if (!start) {
       start = String.fromCharCode(0);
     }
@@ -49,9 +48,9 @@ const FunQuizStartPage = ({ match }) => {
   }, []);
 
   function startQuiz() {
-    localStorage.setItem("session*&start", String.fromCharCode(1));
-    localStorage.setItem("session#hash%20t", hash(0));
-    // localStorage.setItem("session_$index%", String.fromCharCode(0 * 2 + 6));
+    localStorage.setItem("session*&start3", String.fromCharCode(1));
+    localStorage.setItem("session#hash%20t3", hash(0));
+
     setStart(true);
   }
   //! check if quiz start from backend

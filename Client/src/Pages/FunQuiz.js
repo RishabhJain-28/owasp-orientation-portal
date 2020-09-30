@@ -13,6 +13,7 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  // const [submitted, setSubmitted] = useState(false);
   // function hash(i) {
   //   return i + 100;
   //   // return String.fromCharCode(i + 100);
@@ -25,13 +26,13 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
     let score = localStorage.getItem("score");
     console.log(score);
     // console.log("questions", questions);
-    let time = localStorage.getItem("session#hash%20t"); //!time
-    let ans = localStorage.getItem("session#ans"); //!time
+    let time = localStorage.getItem("session#hash%20t3"); //!time
+    let ans = localStorage.getItem("session#ans3"); //!time
     if (ans) setAnswers(JSON.parse(ans));
     if (score) setScore(score);
     // console.log("a", time);
     if (!time) {
-      localStorage.setItem("session#hash%20t", hash(0));
+      localStorage.setItem("session#hash%20t3", hash(0));
       console.log("setting time 0");
       time = hash(0);
       setTime(0);
@@ -49,7 +50,7 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
 
     if (decodedTime >= maxTime * questions.length) {
       // console.log("d-lock", time);
-      localStorage.setItem("session#hash%20t", hash(-1));
+      localStorage.setItem("session#hash%20t3", hash(-1));
       return submitQuiz();
     }
     setTime(decodedTime);
@@ -59,6 +60,7 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
 
   useEffect(() => {
     if (submit) return;
+    if (submitted) return;
     // console.log("time in effect ", time);
     if (isNaN(Number(time))) return;
     setTimerID(
@@ -71,7 +73,7 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
           //  nextQuestion();
         } else {
           t++;
-          localStorage.setItem("session#hash%20t", hash(t));
+          localStorage.setItem("session#hash%20t3", hash(t));
           setTime(t);
           // console.log(t);
           setQ_index(Math.floor(t / maxTime));
@@ -82,26 +84,30 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
   }, [time]);
 
   async function submitQuiz() {
+    setSubmitted(true);
     console.log("QUIZ SUBMIITED");
-    if (submitted) throw new Error();
+    if (submitted) return;
+    if (submit) return;
     try {
       const { data, status } = await axios.post("/questionBank/submit", {
         responses: answers,
       });
       console.log(data);
       if (status == 200) {
-        setSubmitted(true);
         alert("QUIZ SUBMIITED");
       }
       localStorage.setItem("score", data.score);
       setScore(data.score);
     } catch (err) {
-      alert("can not resubmit ");
+      console.log(err);
+      if (err.status === 403)
+        return alert(`cookie error ${JSON.stringify(err)}`);
+      alert(`can not resubmit ${JSON.stringify(err)}`);
     }
     clearTimeout(timerID);
     setTime(-1);
     // console.log("hash shoulld ve -1", hash(-1));
-    localStorage.setItem("session#hash%20t", hash(-1));
+    localStorage.setItem("session#hash%20t3", hash(-1));
     // localStorage.setItem("session_$index%", String.fromCharCode(6 * 2 + 6));
     setSubmit(true);
   }
@@ -109,7 +115,7 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
     let t = time;
     t = (q_index + 1) * maxTime;
     // localStorage.setItem("session_$index%", String.fromCharCode(i * 2 + 6));
-    localStorage.setItem("session#hash%20t", hash(t));
+    localStorage.setItem("session#hash%20t3", hash(t));
     setTime(t);
     setQ_index(Math.floor(t / maxTime));
   }
@@ -117,7 +123,7 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
     const ans = answers;
     ans[id] = e.target.value;
     console.log(ans);
-    localStorage.setItem("session#ans", JSON.stringify(ans));
+    localStorage.setItem("session#ans3", JSON.stringify(ans));
     setAnswers(ans);
   }
   return (
@@ -168,6 +174,7 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
                 <ButtonGroup className="m-2 ml-4 mr-4">
                   {q_index === questions.length - 1 ? (
                     <button
+                      disabled={submitted}
                       className="btn pink_btn"
                       onClick={() => submitQuiz()}
                     >
@@ -195,7 +202,7 @@ export default FunQuiz;
 function AfterSubmit({ user, score }) {
   return (
     <div className="question">
-      Nicely done {user.username}! You got{" "}
+      Nicely done {user.name}! You got{" "}
       <span className="auto_submit_span">{score}</span> marks!!!
       <br />
       <Link to="/dashboard">Back to dashboard</Link>

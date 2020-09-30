@@ -13,6 +13,7 @@ import CompleteRegistration from "./Pages/CompleteRegistration";
 import FunQuizStartPage from "./Pages/FunQuizStartPage";
 import CodingQuizStartPage from "./Pages/CodingQuizStartPage";
 import ErrorPage from "./Pages/ErrorPage";
+import HardReset from "./Pages/HardReset";
 import { hash, dehash } from "./util/encrypt";
 function App() {
   useEffect(() => {
@@ -23,6 +24,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/error" component={ErrorPage} />
+          <Route path="/hardResetzxcvbnm" component={HardReset} />
           <Route
             exact
             path="/hardReset/asdfmnb"
@@ -37,14 +39,14 @@ function App() {
           <Route
             exact
             render={(props) => {
-              let time = localStorage.getItem("session#hash%20t");
+              let time = localStorage.getItem("session#hash%20t3");
               // if (!time) {
-              //   localStorage.setItem("session#hash%20t", hash(0));
+              //   localStorage.setItem("session#hash%20t3", hash(0));
               //   time = hash(0);
               // }
               if (time) {
                 const decodedTime = dehash(time);
-                // localStorage.setItem("session#hash%20t", hash(0));
+                // localStorage.setItem("session#hash%20t3", hash(0));
                 // time = hash(0);
 
                 console.log("before route", decodedTime);
@@ -55,7 +57,7 @@ function App() {
                 ) {
                   console.log("in condition", decodedTime);
                   localStorage.setItem(
-                    "session#hash%20t",
+                    "session#hash%20t3",
                     hash(decodedTime + 1)
                   );
                 }
@@ -69,12 +71,12 @@ function App() {
             render={(props) => {
               let time = localStorage.getItem("session#hash%20t2");
               // if (!time) {
-              //   localStorage.setItem("session#hash%20t", hash(0));
+              //   localStorage.setItem("session#hash%20t3", hash(0));
               //   time = hash(0);
               // }
               if (time) {
                 const decodedTime = dehash(time);
-                // localStorage.setItem("session#hash%20t", hash(0));
+                // localStorage.setItem("session#hash%20t3", hash(0));
                 // time = hash(0);
 
                 console.log("before route", decodedTime);
