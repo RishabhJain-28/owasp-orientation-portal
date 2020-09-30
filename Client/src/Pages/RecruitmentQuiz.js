@@ -5,7 +5,7 @@ import axios from "../util/axios";
 import { Link } from "react-router-dom";
 import "../Components/quiz.css";
 import { hash, dehash } from "../util/encrypt";
-const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
+const RecruitmentQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
   const [maxTime] = useState(10);
   const [time, setTime] = useState();
   const [timerID, setTimerID] = useState("");
@@ -13,69 +13,54 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(0);
   const [submitted, setSubmitted] = useState(false);
-  // const [submitted, setSubmitted] = useState(false);
-  // function hash(i) {
-  //   return i + 100;
-  //   // return String.fromCharCode(i + 100);
-  // }
-  // function dehash(code) {
-  //   return code - 100;
-  //   // return code.charCodeAt(0) - 100;
-  // }
+
   useEffect(() => {
     let score = localStorage.getItem("score");
     console.log(score);
-    // console.log("questions", questions);
-    let time = localStorage.getItem("session#hash%20t"); //!time
-    let ans = localStorage.getItem("session#ans"); //!time
+
+    let time = localStorage.getItem("session#hash%20t3"); //!time
+    let ans = localStorage.getItem("session#ans3"); //!time
     if (ans) setAnswers(JSON.parse(ans));
     if (score) setScore(score);
-    // console.log("a", time);
+
     if (!time) {
-      localStorage.setItem("session#hash%20t", hash(0));
+      localStorage.setItem("session#hash%20t3", hash(0));
       console.log("setting time 0");
       time = hash(0);
       setTime(0);
     }
-    // console.log("b", time);
 
     let decodedTime = dehash(time);
-    // console.log("c-decoded", decodedTime);
+
     if (decodedTime === -1) {
-      // console.log("-1", decodedTime);
       setQ_index(6);
       setSubmit(true);
       return;
     }
 
     if (decodedTime >= maxTime * questions.length) {
-      // console.log("d-lock", time);
-      localStorage.setItem("session#hash%20t", hash(-1));
+      localStorage.setItem("session#hash%20t3", hash(-1));
       return submitQuiz();
     }
     setTime(decodedTime);
-    // console.log("e-state-time", decodedTime);
-    setQ_index(Math.floor(decodedTime / maxTime));
   }, []);
 
   useEffect(() => {
     if (submit) return;
     if (submitted) return;
-    // console.log("time in effect ", time);
+
     if (isNaN(Number(time))) return;
     setTimerID(
       setTimeout(() => {
-        // console.log("time in timeout ", time);
         let t = time;
         if (t === -1) return;
         if (t >= maxTime * questions.length) {
           submitQuiz();
-          //  nextQuestion();
         } else {
           t++;
-          localStorage.setItem("session#hash%20t", hash(t));
+          localStorage.setItem("session#hash%20t3", hash(t));
           setTime(t);
-          // console.log(t);
+
           setQ_index(Math.floor(t / maxTime));
         }
       }, 1000)
@@ -106,16 +91,16 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
     }
     clearTimeout(timerID);
     setTime(-1);
-    // console.log("hash shoulld ve -1", hash(-1));
-    localStorage.setItem("session#hash%20t", hash(-1));
-    // localStorage.setItem("session_$index%", String.fromCharCode(6 * 2 + 6));
+
+    localStorage.setItem("session#hash%20t3", hash(-1));
+
     setSubmit(true);
   }
   function nextQuestion() {
     let t = time;
     t = (q_index + 1) * maxTime;
-    // localStorage.setItem("session_$index%", String.fromCharCode(i * 2 + 6));
-    localStorage.setItem("session#hash%20t", hash(t));
+
+    localStorage.setItem("session#hash%20t3", hash(t));
     setTime(t);
     setQ_index(Math.floor(t / maxTime));
   }
@@ -123,7 +108,7 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
     const ans = answers;
     ans[id] = e.target.value;
     console.log(ans);
-    localStorage.setItem("session#ans", JSON.stringify(ans));
+    localStorage.setItem("session#ans3", JSON.stringify(ans));
     setAnswers(ans);
   }
   return (
@@ -138,13 +123,12 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
         </div>
         <div className="row justify-content-center mt-3 mb-4">
           <h1 className="quiz_heading">
-            <span>FUN</span> QUIZ
+            <span>TEST </span> QUIZ
           </h1>
         </div>
         {!submit ? (
           <>
             <div className="mb-2 question">
-              {/* {alert(q_index)} */}
               {q_index < questions.length && (
                 <Question
                   num={q_index + 1}
@@ -197,7 +181,7 @@ const FunQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
   );
 };
 
-export default FunQuiz;
+export default RecruitmentQuiz;
 
 function AfterSubmit({ user, score }) {
   return (

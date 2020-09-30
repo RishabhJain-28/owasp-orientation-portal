@@ -17,15 +17,15 @@ const FunQuizStartPage = ({ match }) => {
   useEffect(() => {
     async function getQuestions() {
       try {
-        const local = JSON.parse(localStorage.getItem("questions"));
+        const local = JSON.parse(localStorage.getItem("questions3"));
         if (start && local && local.length) {
           return setQuestions(local);
         }
         // if (!submit[0]) return;
         const { data } = await axios.get(`/quiz/start/${match.params.id}`); //!add route
-        // console.log("questions", data);
+        // console.log("questions3", data);
 
-        localStorage.setItem("questions", JSON.stringify(data.questionIds));
+        localStorage.setItem("questions3", JSON.stringify(data.questionIds));
         setQuestions(data.questionIds);
         setLoading(false);
       } catch (err) {
@@ -40,7 +40,7 @@ const FunQuizStartPage = ({ match }) => {
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
-    let start = localStorage.getItem("session*&start");
+    let start = localStorage.getItem("session*&start3");
     if (!start) {
       start = String.fromCharCode(0);
     }
@@ -48,8 +48,8 @@ const FunQuizStartPage = ({ match }) => {
   }, []);
 
   function startQuiz() {
-    localStorage.setItem("session*&start", String.fromCharCode(1));
-    localStorage.setItem("session#hash%20t", hash(0));
+    localStorage.setItem("session*&start3", String.fromCharCode(1));
+    localStorage.setItem("session#hash%20t3", hash(0));
 
     setStart(true);
   }
@@ -82,7 +82,7 @@ const FunQuizStartPage = ({ match }) => {
             </div>
             <div className="row justify-content-center mt-3 mb-4">
               <h1 className="quiz_heading">
-                <span>FUN</span> QUIZ
+                <span>TEST</span> QUIZ
               </h1>
             </div>
             <div className="mb-2 question">

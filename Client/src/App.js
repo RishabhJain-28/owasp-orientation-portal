@@ -12,6 +12,7 @@ import CompleteRegistration from "./Pages/CompleteRegistration";
 // import ContactUs from "./Pages/ContactUs";
 import FunQuizStartPage from "./Pages/FunQuizStartPage";
 import CodingQuizStartPage from "./Pages/CodingQuizStartPage";
+import RecruitmentQuizStartPage from "./Pages/RecruitmentQuizStartPage";
 import ErrorPage from "./Pages/ErrorPage";
 import HardReset from "./Pages/HardReset";
 import { hash, dehash } from "./util/encrypt";
@@ -39,15 +40,35 @@ function App() {
           <Route
             exact
             render={(props) => {
-              let time = localStorage.getItem("session#hash%20t3");
-              // if (!time) {
-              //   localStorage.setItem("session#hash%20t3", hash(0));
-              //   time = hash(0);
-              // }
+              let time = localStorage.getItem("session#hash%20t");
+
               if (time) {
                 const decodedTime = dehash(time);
-                // localStorage.setItem("session#hash%20t3", hash(0));
-                // time = hash(0);
+
+                console.log("before route", decodedTime);
+                console.log("performance", PerformanceNavigation.TYPE_RELOAD);
+                if (
+                  decodedTime !== -1 &&
+                  PerformanceNavigation.TYPE_RELOAD === 1
+                ) {
+                  console.log("in condition", decodedTime);
+                  localStorage.setItem(
+                    "session#hash%20t",
+                    hash(decodedTime + 1)
+                  );
+                }
+              }
+              return <FunQuizStartPage {...props} />;
+            }}
+            path="/funquiz/:id"
+          />
+          <Route
+            exact
+            render={(props) => {
+              let time = localStorage.getItem("session#hash%20t3");
+
+              if (time) {
+                const decodedTime = dehash(time);
 
                 console.log("before route", decodedTime);
                 console.log("performance", PerformanceNavigation.TYPE_RELOAD);
@@ -62,9 +83,9 @@ function App() {
                   );
                 }
               }
-              return <FunQuizStartPage {...props} />;
+              return <RecruitmentQuizStartPage {...props} />;
             }}
-            path="/funquiz/:id"
+            path="/test/:id"
           />
           <Route
             exact

@@ -8,8 +8,6 @@ const HardReset = () => {
       localStorage.clear();
       const res = await axios.get("/questionBank/hardRESET");
       const { data } = res;
-      //   console.log(data);
-      //   console.log(res);
       setData(data.msg);
     }
     reset();
