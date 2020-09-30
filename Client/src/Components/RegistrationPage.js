@@ -42,13 +42,13 @@ const RegistrationPage = () => {
                       <h1 data-aos="flip-up" data-aos-duration="3000">
                         LEARN
                       </h1>
-                      {/* <div
+                      <div
                         className="countdown-phone"
                         style={{ color: "black" }}
                       >
-                        Countdown to Orientation:
+                        Countdown to Recruitment Quiz slot 1:
                       </div>
-                      <Counter /> */}
+                      <Counter />
                     </div>
                   </div>
                 </div>
