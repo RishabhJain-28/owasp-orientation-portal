@@ -86,9 +86,9 @@ router.get("/start/:id", async (req, res) => {
       return res.status(400).send("Can not start quiz.");
 
     const { data, status } = await axios.post(
-      `http://localhost:5000/api/questionBank/generate`,
+      // `http://localhost:5000/api/questionBank/generate`,
 
-      // `${process.env.CLIENT_URL}/api/questionBank/generate`,
+      `${process.env.CLIENT_URL}/api/questionBank/generate`,
       // `/api/questionBank/generate`,
       {
         userId: req.user._id,
