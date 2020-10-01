@@ -24,13 +24,13 @@ const DashboardAnnouncments = () => {
                 <strong>Dated : 30th September,2020</strong><br></br>
                 The Schedule for the Recruitment of <strong>first</strong> year is as follows: 
                 <ul>
-                  <li>October 1, 2020 - Aptitude and Coding Quiz (Round 1)</li>
+                  <li>October 1, 2020 - Aptitude and Coding Quiz at 5:30pm or 7:30pm</li>
                   <li>October 3, 2020 - Department preference forms will be out!</li>
                   <li>October 5 - October 7, 2020 - Personal Interviews</li>
                 </ul>
                 The Schedule for the Recruitment of <strong>second</strong> year is as follows:
                 <ul>
-                  <li>October 1, 2020 - Recruitment forms will be out!</li>
+                  <li>October 1, 2020 - Recruitment forms will be out at 3:00pm!</li>
                   <li>October 5 - October 7, 2020 - Personal Interviews</li>
                 </ul>
               </p>
@@ -44,6 +44,7 @@ const DashboardAnnouncments = () => {
                 Navigate to the Dashboard section for Orientation links.
                 Orientation will commence at 5:30pm on 29th September,2020.
                 Stick till the end know about the recruitment process!!!
+                <strong>You can watch the recorded live session <a href={https://www.youtube.com/watch?v=ITjSxUDs87E}>here</a></strong>
               </p>
             </div>
           </div>

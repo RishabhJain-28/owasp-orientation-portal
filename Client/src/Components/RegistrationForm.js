@@ -27,7 +27,7 @@ const RegistrationForm = ({ buttonText, ...rest }) => {
       />
       <Input
         type="text"
-        placeholder="Enter year"
+        placeholder="Enter year (select from the dropdown menu only)"
         label="YEAR:"
         value={year}
         name="year"
@@ -41,7 +41,7 @@ const RegistrationForm = ({ buttonText, ...rest }) => {
       </datalist>
       <Input
         type="number"
-        placeholder="Enter phone number"
+        placeholder="Enter phone number (should start from 6-9 digit)"
         label="PHONE NUMBER:"
         value={phoneNumber}
         name="phoneNumber"
@@ -50,7 +50,7 @@ const RegistrationForm = ({ buttonText, ...rest }) => {
       />
       <Input
         type="text"
-        placeholder="Enter branch"
+        placeholder="Enter branch (select from the dropdown menu only)"
         label="BRANCH:"
         value={branch}
         name="branch"
@@ -64,6 +64,7 @@ const RegistrationForm = ({ buttonText, ...rest }) => {
         <option value="CIVIL ENGINEERING - CIE" />
         <option value="COMPUTER ENGINEERING - COE" />
         <option value="COMPUTER SCIENCE AND ENGINEERING(PATIALA CAMPUS) – COPC" />
+        <option value="COMPUTER SCIENCE AND BUSINESS SYSTEMS - COBS" />
         <option value="ELECTRICAL ENGINEERING - ELE" />
         <option value="ELECTRONICS AND COMMUNICATION ENGINEERING - ECE" />
         <option value="ELECTRONICS AND COMPUTER ENGINEERING - ENC" />
@@ -71,14 +72,14 @@ const RegistrationForm = ({ buttonText, ...rest }) => {
         <option value="MECHANICAL ENGINEERING – MEE" />
         <option value="MECHANICAL ENGINEERING(PRODUCTION) - MPE" />
         <option value="MECHATRONICS - MEC" />
-        <option value="ELECTRICAL AND COMPUTER ENGINEERING - MEC" />
+        <option value="ELECTRICAL AND COMPUTER ENGINEERING - MEC" />        
         //!CODE
         <option value="ELECTRICAL AND COMPUTER ENGINEERING - MEC" />
         //!BIOTECH
       </datalist>
       <Input
         type="number"
-        placeholder="Enter Application number"
+        placeholder="Enter Roll no./ Application number (or your rank)"
         label="APPLICATION NUMBER:"
         value={rollNumber}
         name="rollNumber"

@@ -35,7 +35,7 @@ const DashboardContent = ({ quizzes, name }) => {
                 <br></br>
                 For 1st year candidates : On 1st October, quiz will be held in two slots i.e at <strong>5:30pm</strong> and <strong>7:30pm</strong>. You can choose any <strong>one</strong> slot.
                 <br></br>
-                For 2nd year candidates : On 1st October, Recruitment form will be live at <strong>5:30pm</strong>.
+                For 2nd year candidates : On 1st October, Recruitment form will be live at <strong>3:00pm</strong>.
               </p>
             </div>
             <div className="row">
@@ -69,16 +69,16 @@ const DashboardContent = ({ quizzes, name }) => {
                 /> */}
                 <DashboardCard
                   iconClass="fa fa-indent"
-                  heading="Recruitment quiz for first year"
+                  heading="Recruitment quiz"
                   title="Only for first year students"
                   desc="Slot 1 : Quiz will be live at 5:30pm"
                   link={getLink("funquiz")}
                 />
                 <DashboardCard
                   iconClass="fa fa-file-text"
-                  heading="Recruitment form for 2nd year"
+                  heading="Recruitment form"
                   title="Only for Second year students"
-                  desc="Form link will be live at 5:30pm"
+                  desc="Form link will be live at 3:00pm"
                   link={getLink("codingquiz")}
                 />
               </div>
