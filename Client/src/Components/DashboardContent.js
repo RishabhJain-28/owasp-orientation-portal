@@ -28,14 +28,25 @@ const DashboardContent = ({ quizzes, name }) => {
               <p>
                 Hey {name},Thank you for registering! We welcome you to the
                 Owasp student chapter portal! <br></br>
-                <strong>In order to be irreplaceable, one must always be different.</strong><br></br>
-                The world today requires multi-tasking and multi-skilled engineers who can write the most efficient code at one time and pitch the 
-                business ideas on the other. OWASP Student Chapter TIET, an elite coding club, that prepares you for the Tech world and simultaneously 
-                equips you with Non-Tech skills, is officially going to start the recruitments for First Year and Second Year from OCTOBER 1, 2020.
+                <strong>
+                  In order to be irreplaceable, one must always be different.
+                </strong>
                 <br></br>
-                For 1st year candidates : On 1st October, quiz will be held in two slots i.e at <strong>5:30pm</strong> and <strong>7:30pm</strong>. You can choose any <strong>one</strong> slot.
+                The world today requires multi-tasking and multi-skilled
+                engineers who can write the most efficient code at one time and
+                pitch the business ideas on the other. OWASP Student Chapter
+                TIET, an elite coding club, that prepares you for the Tech world
+                and simultaneously equips you with Non-Tech skills, is
+                officially going to start the recruitments for First Year and
+                Second Year from OCTOBER 1, 2020.
                 <br></br>
-                For 2nd year candidates : On 1st October, Recruitment form will be live at <strong>5:30pm</strong>.
+                For 1st year candidates : On 1st October, quiz will be held in
+                two slots i.e at <strong>5:30pm</strong> and{" "}
+                <strong>7:30pm</strong>. You can choose any <strong>one</strong>{" "}
+                slot.
+                <br></br>
+                For 2nd year candidates : On 1st October, Recruitment form will
+                be live at <strong>5:30pm</strong>.
               </p>
             </div>
             <div className="row">
@@ -74,13 +85,13 @@ const DashboardContent = ({ quizzes, name }) => {
                   desc="Slot 1 : Quiz will be live at 5:30pm"
                   link={getLink("funquiz")}
                 />
-                <DashboardCard
+                {/* <DashboardCard
                   iconClass="fa fa-file-text"
                   heading="Recruitment form for 2nd year"
                   title="Only for Second year students"
                   desc="Form link will be live at 5:30pm"
                   link={getLink("codingquiz")}
-                />
+                /> */}
               </div>
             </div>
           </div>

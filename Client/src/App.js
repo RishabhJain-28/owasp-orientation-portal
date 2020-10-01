@@ -37,7 +37,7 @@ function App() {
           <Route path="/dashboard" component={Dashboard} />
           {/* <Route exact path="/contactus" component={ContactUs} /> */}
           {/* <Route path="/funquiz/:id" component={FunQuizStartPage} /> */}
-          <Route
+          {/* <Route
             exact
             render={(props) => {
               let time = localStorage.getItem("session#hash%20t");
@@ -61,7 +61,7 @@ function App() {
               return <FunQuizStartPage {...props} />;
             }}
             path="/funquiz/:id"
-          />
+          /> */}
           <Route
             exact
             render={(props) => {
@@ -85,7 +85,7 @@ function App() {
               }
               return <RecruitmentQuizStartPage {...props} />;
             }}
-            path="/test/:id"
+            path="/funquiz/:id"
           />
           <Route
             exact

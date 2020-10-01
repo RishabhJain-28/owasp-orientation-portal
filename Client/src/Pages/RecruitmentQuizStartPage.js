@@ -5,7 +5,8 @@ import { Redirect } from "react-router-dom";
 
 import "../Components/quiz.css";
 import { hash, dehash } from "../util/encrypt";
-import FunQuiz from "./FunQuiz";
+// import FunQuiz from "./FunQuiz";
+import RecruitmentQuiz from "./RecruitmentQuiz";
 
 const FunQuizStartPage = ({ match }) => {
   const [start, setStart] = useState(false);
@@ -30,7 +31,7 @@ const FunQuizStartPage = ({ match }) => {
         setLoading(false);
       } catch (err) {
         if (err.status === 403)
-          return alert(`cookie1 error ${JSON.stringify(err)}`);
+          return alert(`cookie error ${JSON.stringify(err)}`);
         alert(`Quiz has not been started yet ${err}`);
         setRedirect(true);
       }
@@ -63,7 +64,7 @@ const FunQuizStartPage = ({ match }) => {
   return (
     <>
       {start ? (
-        <FunQuiz
+        <RecruitmentQuiz
           hash={hash}
           dehash={dehash}
           submit={submit}

@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 import "../Components/quiz.css";
 import { hash, dehash } from "../util/encrypt";
 const RecruitmentQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
-  const [maxTime] = useState(10);
+  const [maxTime] = useState(2 * 60);
   const [time, setTime] = useState();
   const [timerID, setTimerID] = useState("");
-  const [q_index, setQ_index] = useState(0);
+  //   const [q_index, setQ_index] = useState(0);
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(0);
   const [submitted, setSubmitted] = useState(false);
@@ -33,12 +33,12 @@ const RecruitmentQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
     let decodedTime = dehash(time);
 
     if (decodedTime === -1) {
-      setQ_index(6);
+      // setQ_index(6);
       setSubmit(true);
       return;
     }
 
-    if (decodedTime >= maxTime * questions.length) {
+    if (decodedTime >= maxTime) {
       localStorage.setItem("session#hash%20t3", hash(-1));
       return submitQuiz();
     }
@@ -54,14 +54,14 @@ const RecruitmentQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
       setTimeout(() => {
         let t = time;
         if (t === -1) return;
-        if (t >= maxTime * questions.length) {
+        if (t >= maxTime) {
           submitQuiz();
         } else {
           t++;
           localStorage.setItem("session#hash%20t3", hash(t));
           setTime(t);
 
-          setQ_index(Math.floor(t / maxTime));
+          // setQ_index(Math.floor(t / maxTime));
         }
       }, 1000)
     );
@@ -96,14 +96,14 @@ const RecruitmentQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
 
     setSubmit(true);
   }
-  function nextQuestion() {
-    let t = time;
-    t = (q_index + 1) * maxTime;
+  //   function nextQuestion() {
+  //     let t = time;
+  //     t = (q_index + 1) * maxTime;
 
-    localStorage.setItem("session#hash%20t3", hash(t));
-    setTime(t);
-    setQ_index(Math.floor(t / maxTime));
-  }
+  //     localStorage.setItem("session#hash%20t3", hash(t));
+  //     setTime(t);
+  //     setQ_index(Math.floor(t / maxTime));
+  //   }
   function markAns(e, id) {
     const ans = answers;
     ans[id] = e.target.value;
@@ -126,26 +126,9 @@ const RecruitmentQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
             <span>TEST </span> QUIZ
           </h1>
         </div>
+
         {!submit ? (
           <>
-            <div className="mb-2 question">
-              {q_index < questions.length && (
-                <Question
-                  num={q_index + 1}
-                  markAns={markAns}
-                  question={questions[q_index]}
-                />
-              )}
-              {maxTime * questions.length - time < 5 && (
-                <p>
-                  Auto submitting in{" "}
-                  <span className="auto_submit_span">
-                    {maxTime * questions.length - time}
-                  </span>{" "}
-                  seconds...
-                </p>
-              )}
-            </div>
             <ProgressBar
               className="mb-3"
               animated
@@ -153,22 +136,48 @@ const RecruitmentQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
               min={0}
               max={maxTime}
             />
+            {maxTime - time < 60 && (
+              <div className="mb-2 question">
+                <p>
+                  Auto submitting in{" "}
+                  <span className="auto_submit_span">{maxTime - time}</span>{" "}
+                  seconds...
+                </p>
+              </div>
+            )}
+            {questions.map((question, i) => (
+              <div className="mb-2 question">
+                <Question num={i + 1} markAns={markAns} question={question} />
+              </div>
+            ))}
+
+            {maxTime - time < 60 && (
+              <div className="mb-2 question">
+                <p>
+                  Auto submitting in{" "}
+                  <span className="auto_submit_span">{maxTime - time}</span>{" "}
+                  seconds...
+                </p>
+              </div>
+            )}
+
             <div className="container">
               <div className="row justify-content-center">
                 <ButtonGroup className="m-2 ml-4 mr-4">
-                  {q_index === questions.length - 1 ? (
-                    <button
-                      disabled={submitted}
-                      className="btn pink_btn"
-                      onClick={() => submitQuiz()}
-                    >
-                      Submit
-                    </button> //! add submit
-                  ) : (
+                  {/* {q_index === questions.length - 1 ? ( */}
+                  <button
+                    disabled={submitted}
+                    className="btn pink_btn"
+                    onClick={() => submitQuiz()}
+                  >
+                    Submit
+                  </button>
+
+                  {/* ) : (
                     <button className="btn blue_btn" onClick={nextQuestion}>
                       Next
                     </button>
-                  )}
+                  )} */}
                 </ButtonGroup>
               </div>
             </div>
