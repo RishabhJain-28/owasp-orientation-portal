@@ -224,6 +224,35 @@ router.post("/submit", [isAuthenticated, activeQuiz], async (req, res) => {
     res.status(400).send("Server denied request.");
   }
 });
+
+// * Get Leaderboard
+router.get("/ld/:id", async (req, res) => {
+  try {
+    const ld = await QuestionBank.find({ quiz: req.params.id })
+      .select("score participant")
+      .sort("-score")
+      .populate("participant", "email name")
+      .exec();
+
+    const result = ld.map((x) => {
+      return { name: x.participant.name, score: x.score };
+    });
+
+    const myQb = await QuestionBank.findOne({
+      quiz: req.params.id,
+      participant: req.user._id,
+    }).exec();
+
+    if (!myQb) return res.json({ result, score: -1 });
+
+    res.json({ result, score: myQb.score });
+  } catch (error) {
+    console.log("Error occured here \n", error);
+    res.status(400).send("Server Denied Request.");
+  }
+});
+
+// * HARD RESET
 router.get("/hardRESET", isAuthenticated, async (req, res) => {
   const questionBank = await QuestionBank.findOneAndDelete({
     participant: req.user._id,
