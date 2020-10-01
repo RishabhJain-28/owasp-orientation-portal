@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import "./question.css";
 
-const Question = ({ num, question: { _id, statement, options }, markAns }) => {
+const Question = ({
+  num,
+  question: { _id, statement, options },
+  markAns,
+  currentAns,
+}) => {
   // function optionSelected(e) {
   //   console.log(e.target.value);
   // }
+  useEffect(() => {
+    if (currentAns) setCurrent(currentAns);
+  }, [currentAns]);
+
   const [current, setCurrent] = useState("");
   return (
     <div>

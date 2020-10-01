@@ -20,7 +20,9 @@ const RecruitmentQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
 
     let time = localStorage.getItem("session#hash%20t3"); //!time
     let ans = localStorage.getItem("session#ans3"); //!time
-    if (ans) setAnswers(JSON.parse(ans));
+    if (ans) {
+      setAnswers(JSON.parse(ans));
+    }
     if (score) setScore(score);
 
     if (!time) {
@@ -147,7 +149,12 @@ const RecruitmentQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
             )}
             {questions.map((question, i) => (
               <div className="mb-2 question">
-                <Question num={i + 1} markAns={markAns} question={question} />
+                <Question
+                  num={i + 1}
+                  markAns={markAns}
+                  question={question}
+                  currentAns={answers[question._id]}
+                />
               </div>
             ))}
 
