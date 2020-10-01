@@ -88,8 +88,8 @@ router.get("/start/:id", async (req, res) => {
     const { data, status } = await axios.post(
       // `http://localhost:5000/api/questionBank/generate`,
 
-      // `${process.env.CLIENT_URL}/api/questionBank/generate`,
-      `/api/questionBank/generate`,
+      `${process.env.CLIENT_URL}/api/questionBank/generate`,
+      // `/api/questionBank/generate`,
       {
         userId: req.user._id,
         // userId: req.user.,
