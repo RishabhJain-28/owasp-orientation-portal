@@ -38,7 +38,7 @@ const RecruitmentQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
       setSubmit(true);
       return;
     }
-
+    // console.log(decodedTime)
     if (decodedTime >= maxTime) {
       localStorage.setItem("session#hash%20t3", hash(-1));
       return submitQuiz();
@@ -60,6 +60,7 @@ const RecruitmentQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
         } else {
           t++;
           localStorage.setItem("session#hash%20t3", hash(t));
+          console.log(t / 60, ":", t % 60);
           setTime(t);
         }
       }, 1000)
