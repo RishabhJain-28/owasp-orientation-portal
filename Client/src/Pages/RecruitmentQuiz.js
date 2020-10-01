@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 import "../Components/quiz.css";
 import { hash, dehash } from "../util/encrypt";
 const RecruitmentQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
-  const [maxTime] = useState(2 * 60);
+  const [maxTime] = useState(15 * 60);
   const [time, setTime] = useState();
   const [timerID, setTimerID] = useState("");
-  //   const [q_index, setQ_index] = useState(0);
+
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(0);
   const [submitted, setSubmitted] = useState(false);
@@ -35,7 +35,6 @@ const RecruitmentQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
     let decodedTime = dehash(time);
 
     if (decodedTime === -1) {
-      // setQ_index(6);
       setSubmit(true);
       return;
     }
@@ -62,8 +61,6 @@ const RecruitmentQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
           t++;
           localStorage.setItem("session#hash%20t3", hash(t));
           setTime(t);
-
-          // setQ_index(Math.floor(t / maxTime));
         }
       }, 1000)
     );
@@ -98,18 +95,11 @@ const RecruitmentQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
 
     setSubmit(true);
   }
-  //   function nextQuestion() {
-  //     let t = time;
-  //     t = (q_index + 1) * maxTime;
 
-  //     localStorage.setItem("session#hash%20t3", hash(t));
-  //     setTime(t);
-  //     setQ_index(Math.floor(t / maxTime));
-  //   }
   function markAns(e, id) {
     const ans = answers;
     ans[id] = e.target.value;
-    console.log(ans);
+
     localStorage.setItem("session#ans3", JSON.stringify(ans));
     setAnswers(ans);
   }
@@ -171,7 +161,6 @@ const RecruitmentQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
             <div className="container">
               <div className="row justify-content-center">
                 <ButtonGroup className="m-2 ml-4 mr-4">
-                  {/* {q_index === questions.length - 1 ? ( */}
                   <button
                     disabled={submitted}
                     className="btn pink_btn"
@@ -179,12 +168,6 @@ const RecruitmentQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
                   >
                     Submit
                   </button>
-
-                  {/* ) : (
-                    <button className="btn blue_btn" onClick={nextQuestion}>
-                      Next
-                    </button>
-                  )} */}
                 </ButtonGroup>
               </div>
             </div>
