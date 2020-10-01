@@ -37,7 +37,7 @@ const RegistrationForm = ({ buttonText, ...rest }) => {
       />
       <datalist id="years">
         <option value="First year" />
-        <option value="Second year" />
+        {/* <option value="Second year" /> */}
       </datalist>
       <Input
         type="number"
@@ -71,10 +71,9 @@ const RegistrationForm = ({ buttonText, ...rest }) => {
         <option value="MECHANICAL ENGINEERING – MEE" />
         <option value="MECHANICAL ENGINEERING(PRODUCTION) - MPE" />
         <option value="MECHATRONICS - MEC" />
-        <option value="ELECTRICAL AND COMPUTER ENGINEERING - MEC" />
-        //!CODE
-        <option value="ELECTRICAL AND COMPUTER ENGINEERING - MEC" />
-        //!BIOTECH
+        <option value="ELECTRICAL AND COMPUTER ENGINEERING" />
+        <option value="COMPUTER SCIENCE AND BUSINESS SYSTEMS - COBS" />
+        <option value="BIOTECH" />
       </datalist>
       <Input
         type="number"

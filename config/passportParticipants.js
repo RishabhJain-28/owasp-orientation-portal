@@ -38,7 +38,9 @@ passport.use(
           "MECHANICAL ENGINEERING – MEE",
           "MECHANICAL ENGINEERING(PRODUCTION) - MPE",
           "MECHATRONICS - MEC",
-          "ELECTRICAL AND COMPUTER ENGINEERING - MEC",
+          "ELECTRICAL AND COMPUTER ENGINEERING",
+          "COMPUTER SCIENCE AND BUSINESS SYSTEMS - COBS",
+          "BIOTECH",
         ];
         const schema = Joi.object({
           name: Joi.string().trim().required().max(150),
@@ -49,7 +51,7 @@ passport.use(
             .required()
             .trim(),
           year: Joi.string()
-            .valid("First year", "Second year")
+            .valid("First year")
             .min(1)
             .max(150)
             .required()
