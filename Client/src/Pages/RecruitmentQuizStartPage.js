@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 
 import "../Components/quiz.css";
 import { hash, dehash } from "../util/encrypt";
-// import FunQuiz from "./FunQuiz";
+
 import RecruitmentQuiz from "./RecruitmentQuiz";
 
 const FunQuizStartPage = ({ match }) => {
@@ -23,7 +23,7 @@ const FunQuizStartPage = ({ match }) => {
           return setQuestions(local);
         }
         // if (!submit[0]) return;
-        const { data } = await axios.get(`/quiz/start/${match.params.id}`); //!add route
+        const { data } = await axios.get(`/quiz/start/${match.params.id}`);
         // console.log("questions3", data);
 
         localStorage.setItem("questions3", JSON.stringify(data.questionIds));
@@ -54,13 +54,11 @@ const FunQuizStartPage = ({ match }) => {
 
     setStart(true);
   }
-  //! check if quiz start from backend
-  //! load questions from
 
   if (!user) {
     return <Redirect to="/" />;
   }
-  if (redirect) return <Redirect to="/dashboard" />; //! local storage
+  if (redirect) return <Redirect to="/dashboard" />;
   return (
     <>
       {start ? (
@@ -83,7 +81,7 @@ const FunQuizStartPage = ({ match }) => {
             </div>
             <div className="row justify-content-center mt-3 mb-4">
               <h1 className="quiz_heading">
-                <span>TEST</span> QUIZ
+                <span>RECRUITMENT</span> QUIZ
               </h1>
             </div>
             <div className="mb-2 question">

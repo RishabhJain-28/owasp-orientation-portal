@@ -83,7 +83,7 @@ const DashboardContent = ({ quizzes, name }) => {
                   heading="Recruitment quiz for first year"
                   title="Only for first year students"
                   desc="Slot 1 : Quiz will be live at 5:30pm"
-                  link={getLink("funquiz")}
+                  link={getLink("Recruitment_FirstYear")}
                 />
                 {/* <DashboardCard
                   iconClass="fa fa-file-text"

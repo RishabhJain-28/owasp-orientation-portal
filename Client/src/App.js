@@ -85,7 +85,7 @@ function App() {
               }
               return <RecruitmentQuizStartPage {...props} />;
             }}
-            path="/funquiz/:id"
+            path="/Recruitment_FirstYear/:id"
           />
           <Route
             exact

@@ -125,7 +125,7 @@ const RecruitmentQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
         </div>
         <div className="row justify-content-center mt-3 mb-4">
           <h1 className="quiz_heading">
-            <span>TEST </span> QUIZ
+            <span>RECRUITMENT</span> QUIZ
           </h1>
         </div>
 
