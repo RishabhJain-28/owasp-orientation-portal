@@ -124,7 +124,7 @@ const RecruitmentQuiz = ({ user, questions, submit: [submit, setSubmit] }) => {
             <ProgressBar
               className="mb-3"
               animated
-              now={Math.floor(time % maxTime)}
+              now={time}
               min={0}
               max={maxTime}
             />
